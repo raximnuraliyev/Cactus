@@ -46,7 +46,7 @@ const HighlightBlock = ({
   className?: string 
 }) => {
   return (
-    <div className={`relative transition-all duration-500 rounded-[1.5rem] ${isActive ? "z-[50] scale-[1.02] bg-gray-900 ring-2 ring-green-500 shadow-[0_0_50px_rgba(74,222,128,0.3)]" : "z-10"} ${className || ''}`}>
+    <div className={`relative transition-all duration-500 rounded-xl ${isActive ? "z-[70] scale-[1.02] bg-gray-900 ring-2 ring-green-500 shadow-[0_0_50px_rgba(74,222,128,0.3)]" : "z-10"} ${className || ''}`}>
       {children}
       {isActive && tooltipNode}
     </div>
@@ -242,7 +242,7 @@ export default function DashboardView() {
       
       {/* Tour Overlay Backdrop */}
       <div 
-        className={`fixed inset-0 z-[40] bg-black/70 backdrop-blur-sm transition-all pointer-events-auto ${isOverlayActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-[60] bg-black/70 transition-all pointer-events-auto ${isOverlayActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => { if(focusedSection) setFocusedSection(null) }}
       />
 
@@ -255,7 +255,7 @@ export default function DashboardView() {
 
           {/* Profile details block */}
           <HighlightBlock isActive={activeOverlayId === 'profile'} tooltipNode={renderTooltip('profile')}>
-            <div className="relative p-6 glass-card group rounded-3xl h-full">
+            <div className="relative p-6 glass-card group rounded-xl h-full">
               <SpotlightHover className="t-accent-muted opacity-50" />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10 w-full">
@@ -339,7 +339,7 @@ export default function DashboardView() {
 
           {/* Daily Challenge banner */}
           <HighlightBlock isActive={activeOverlayId === 'challenge'} tooltipNode={renderTooltip('challenge')}>
-            <div className="relative overflow-hidden p-6 glass-card-accent rounded-3xl shadow-[0_0_20px_var(--accent-muted)]">
+            <div className="relative overflow-hidden p-6 glass-card-accent rounded-xl shadow-[0_0_20px_var(--accent-muted)]">
             <div className="absolute top-0 right-0 p-3 bg-red-500/10 border-l border-b border-red-500/20 text-red-400 font-mono text-xs font-bold uppercase tracking-widest rounded-bl-lg animate-pulse">
               Critical Dispatch
             </div>
@@ -393,7 +393,7 @@ export default function DashboardView() {
 
           {/* Category selection / Action Center */}
           <HighlightBlock isActive={activeOverlayId === 'actions'} tooltipNode={renderTooltip('actions')}>
-            <div className="glass-card p-6 relative rounded-3xl h-full">
+            <div className="glass-card p-6 relative rounded-xl h-full">
               <h3 className="text-sm font-mono font-bold t-text-accent uppercase tracking-widest mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5" />
               {t("scenario_cabinet")}

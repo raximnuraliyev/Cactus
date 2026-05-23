@@ -106,9 +106,9 @@ export default function DashboardGameModal({ onClose }: DashboardGameModalProps)
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-2xl" onClick={onClose} />
       
-      <div className="glass-card border t-border-accent rounded-3xl p-6 w-full max-w-2xl relative z-10 shadow-[0_0_50px_rgba(74,222,128,0.2)] animate-fade-in overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="glass-card border t-border-accent rounded-3xl p-6 w-full max-w-2xl relative z-10 shadow-[0_0_50px_rgba(74,222,128,0.2)] animate-fade-in overflow-hidden flex flex-col max-h-[90vh] bg-black/60 backdrop-blur-xl">
         
         {/* Header */}
         <div className="flex items-center justify-between border-b border-green-500/30 pb-4 shrink-0">

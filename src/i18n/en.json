@@ -447,5 +447,17 @@
   "dash_achv_legend": "City Legend",
   "dash_achv_legend_desc": "Reached top 100 on the global leaderboard.",
   "dash_achv_boss": "Boss Slayer",
-  "dash_achv_boss_desc": "Defeated the seasonal final boss."
+  "dash_achv_boss_desc": "Defeated the seasonal final boss.",
+  "dashboard_tour": {
+    "profile": "Agent Profile",
+    "profile_desc": "Your identity, rank, and current experience level. Keep your streak alive to earn XP multipliers!",
+    "challenge": "Daily Critical Dispatch",
+    "challenge_desc": "Complete these unique daily scenarios to earn rare badges and massive XP boosts.",
+    "actions": "Action Center",
+    "actions_desc": "Jump into quick play scenarios, manage your tournaments, or train your stats.",
+    "stats": "Character Stats",
+    "stats_desc": "Your 4 core detective traits. High Intuition gives hints, high Resilience slows down pressure timers.",
+    "reputation": "City Reputation",
+    "reputation_desc": "Your overall standing in the anti-fraud division. Reach higher tiers to unlock legendary cases."
+  }
 }
