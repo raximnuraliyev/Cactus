@@ -1,0 +1,6 @@
+{
+  "name": "Real or Fake?",
+  "description": "An AI-powered anti-fraud detective game where players interact with characters and identify deepfakes, phishing, and scams.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,479 @@
+{
+  "app_title": "Cactus",
+  "tagline": "AI-ga asoslangan Firibgarlikka Qarshi O'yin",
+  "splash_sub": "Firibgarlar, fishing va deepfayk qo'ng'iroqlarni aniqlashni o'rganing. Moliyaviy xavfsizligingizni interaktiv tarzda sinab ko'ring.",
+  "guest_play": "Mehmon sifatida o'ynash",
+  "tg_login": "Telegram orqali kirish",
+  "register": "Akkaunt yaratish",
+  "login": "Kirish",
+  "email": "Elektron pochta",
+  "password": "Parol",
+  "username": "Foydalanuvchi nomi",
+  "confirm_password": "Parolni tasdiqlang",
+  "forgot_password": "Parolni unutdingizmi?",
+  "no_account": "Akkauntingiz yo'qmi?",
+  "have_account": "Allaqachon akkauntingiz bormi?",
+  "or_separator": "YOKI TELEGRAM ORQALI KIRISH",
+  "footer_text": "SECURE AGENCY KEY DIRECTIVE V.1.0 • ASIA-SOUTHEAST-REG",
+  "main_menu": {
+    "dashboard": "Bosh Sahifa",
+    "leaderboard": "Peshqadamlar",
+    "badges": "Yutuqlar",
+    "history": "Tarix",
+    "settings": "Sozlamalar",
+    "profile": "Profil",
+    "tournaments": "Turnirlar",
+    "achievements": "Yutuqlar"
+  },
+  "user_lvl": "Daraja",
+  "daily_challenge": "Kunlik Topshiriq",
+  "days_streak": "kunlik oqim",
+  "quick_play": "Tezkor O'yin",
+  "play_now": "O'yinni Boshlash",
+  "scenario_briefing": "Ssenariy Instruksiyasi",
+  "back_to_dashboard": "Bosh sahifaga qaytish",
+  "daily_title": "Tezkor Xavfsizlik Reydi",
+  "daily_desc": "Yarim tunda yangilanadi. Bugungi topshiriqni yakunlang va qo'shaloq bonusni qo'lga kiriting.",
+  "daily_start": "Kunlik sinovni boshlash",
+  "daily_done": "Topshiriq bajarildi",
+  "scenario_cabinet": "Taktik ssenariylar arxivi",
+  "neural_lab": "Neyrotahdid laboratoriyasi",
+  "neural_lab_desc": "Ssenariylardan kelayotgan tahdid signallarini tahlil qiling. Tizim xavfsizlik pinglarini tekshirib boring.",
+  "category_phone": "Ovozli qo'ng'iroq",
+  "category_phishing": "Fishing E-pochtalar",
+  "category_transaction": "Karta To'lovlari",
+  "category_document": "Hujjat Tekshiruvi",
+  "active_game": {
+    "transcript": "Suhbat Tarixi",
+    "tools_panel": "Tergov va Diagnostika vositalari",
+    "hang_up": "Aloqani uzish va bankka qayta qo'ng'iroq qilish",
+    "employee_id": "Xodim guvohnomasi kodini so'rash",
+    "complain": "Bo'lim boshlig'ini chaqirish",
+    "flag_suspicious": "Suhbat qismini shubhali deb belgilash",
+    "text_placeholder": "Gumondorni sinash uchun savol yozing...",
+    "send_btn": "Yuborish",
+    "finish_game": "Dalillar taxtasiga o'tish",
+    "evidence_title": "Xavfsizlik Dalillar Taxtasi",
+    "tag_clue": "Shubhali hodisa belgilangan",
+    "gather_clues": "Siz muhim shubhali belgilarni aniqladingiz.",
+    "commit_verdict": "Yakuniy Xavfsizlik Verdictini Topshirish",
+    "detective_choice": "Bu xodim kim?",
+    "abort_case": "Bekor qilish",
+    "ai_loading": "AI gumondor terminalini hal qilmoqda...",
+    "flag_btn": "Shubhali belgi",
+    "hang_up_short": "Aloqani uzish",
+    "query_id": "ID so'rash",
+    "call_supervisor": "Boshiqni chaqirish",
+    "flag_suspicious_short": "Shubhali UZS",
+    "log_telemetry": "[KIRISH] Telemetriya va diagnostika portlari ochiq.",
+    "log_audio": "[KIRISH] Audio paketlarni shifrdan chiqarish faol.",
+    "log_no_diagnostics": "Hozircha dinamik diagnostika ishga tushirilmadi. Boshqaruv panelidan diagnostika opsiyalarini tanlang."
+  },
+  "verdicts": {
+    "legit": "Haqiqiy Bank Xodimi",
+    "scam": "Firibgar / Firibgar",
+    "reasoning": "Tahlil tizimingizni ko'rsating:",
+    "tactic_heading": "Manipulyatsiya turi",
+    "legit_desc": "Rasmiy bank muomalasi sifatida aniqlandi",
+    "scam_desc": "Spufing, bosim yoki zararli dastur topildi",
+    "choose_tactic": "-- Manipulyatsiya usulini tanlang --",
+    "review_logs": "Loglarni ko'rish",
+    "transmit": "Ishni yuborish"
+  },
+  "debrief_page": {
+    "verdict_true": "ISH HAL QILINDI: SUPER DETEKTIV ISHI!",
+    "verdict_false": "TIZIM BUZILDI: PUL O'ZLASHTIRILDI!",
+    "xp_gained": "Tajriba (XP) olindi",
+    "clues_analyzed": "Shubhali belgilar tahlili",
+    "tactics_exchanged": "Ruhiy manipulyatsiya usuli",
+    "clues_found": "Aniqlangan dalillar",
+    "clues_missed": "O'tkazib yuborilgan xatolar",
+    "play_again": "Yangi tergovni boshlash",
+    "go_home": "Bosh sahifaga",
+    "correct": "To'g'ri Verdict",
+    "incorrect": "Noto'g'ri Verdict",
+    "share": "Natijani ulashish",
+    "grade_s": "BAHO S",
+    "grade_f": "BAHO F",
+    "neural_debrief": "Neyrokrimnalistik tahlil",
+    "cognitive_method": "ANIQLANGAN USUL:",
+    "accuracy_rating": "Aniqlik reytingi",
+    "evidence_uncovered": "Dalil topildi",
+    "overlooked_signal": "O'tkazib yuborilgan signal",
+    "badges_earned": "Olingan nishonlar"
+  },
+  "leaderboard": {
+    "title": "Eng Yaxshi Detektivlar Indeksi",
+    "subtitle": "Antifraud aniqlik ko'rsatkichlarini real vaqtda sinxronlash.",
+    "weekly": "Haftalik Reyting",
+    "alltime": "Legendalar Taxtasi",
+    "search": "Operativni qidirish...",
+    "rank": "O'rin",
+    "detective": "Kiber Detektiv",
+    "level": "Daraja",
+    "xp": "XP Ballari",
+    "no_results": "Operativlar topilmadi.",
+    "me_badge": "MEN",
+    "badge_label": "GLOBAL XAVFSIZLIK REYTINGI"
+  },
+  "badges_page": {
+    "title": "Faol Yutuqlar",
+    "subtitle": "Benuqson taktik hushyorlik uchun xavfsizlik tokenlarini to'plang.",
+    "unlocked": "OCHILDI",
+    "locked": "YOPIQ",
+    "calibration": "KALIBRLASH HOLATI",
+    "badge_label": "YUTUQLAR KABINETI"
+  },
+  "settings": {
+    "title": "Tizim Sozlamalari",
+    "subtitle": "Til parametrlari va agentlik profil kodlarini sozlash.",
+    "username_label": "Detektiv Profil Nomi",
+    "username_max": "Maksimum: 32 belgi",
+    "lang_label": "Til Kalibrlash",
+    "notifications": "Kunlik topshiriq bildirishnomalari",
+    "privacy": "Maxfiy profil",
+    "reset_label": "Mahalliy keshni tozalash",
+    "reset_btn": "Xotirani tozalash",
+    "reset_confirm": "Agentlik ma'lumotlarini o'chirishni tasdiqlaysizmi? Bu mahalliy keshlarni tozalaydi.",
+    "save": "Saqlash",
+    "saved": "Sozlamalar saqlandi",
+    "saving": "Saqlanmoqda...",
+    "logout": "Chiqish / Uzish"
+  },
+  "profile": {
+    "title": "Agent Profili",
+    "total_games": "Jami O'yinlar",
+    "accuracy": "Aniqlik",
+    "correct_verdicts": "To'g'ri Verdiktlar",
+    "best_streak": "Eng yaxshi ketma-ketlik",
+    "current_streak": "Joriy ketma-ketlik",
+    "recent_history": "So'nggi tergovlar",
+    "no_history": "Hali tugallangan tergovlar yo'q. Birinchisini boshlang!",
+    "edit_username": "Nomni tahrirlash",
+    "xp_tracker": "EXP Treker",
+    "data_management": "Ma'lumotlarni boshqarish",
+    "export_data": "Ma'lumotlarni eksport qilish",
+    "import_data": "Ma'lumotlarni import qilish",
+    "clear_cache": "Keshni tozalash",
+    "import_success": "Profil muvaffaqiyatli import qilindi!",
+    "import_error": "Noto'g'ri profil ma'lumotlari."
+  },
+  "auth": {
+    "register_title": "Agent Ro'yxatdan O'tish",
+    "register_subtitle": "Taraqqiyotni kuzatish va global musobaqada qatnashish uchun kiber-detektiv identifikatsiyangizni yarating.",
+    "login_title": "Agent Autentifikatsiyasi",
+    "login_subtitle": "Tergov terminaliga kirish uchun shaxsingizni tasdiqlang.",
+    "email_required": "Elektron pochta talab qilinadi",
+    "email_invalid": "To'g'ri email manzilini kiriting",
+    "password_required": "Parol talab qilinadi",
+    "password_min": "Parol 8+ belgidan iborat bo'lib, kamida bitta raqam bo'lishi kerak",
+    "username_required": "Foydalanuvchi nomi talab qilinadi",
+    "username_min": "Nom 2-32 belgi bo'lishi kerak",
+    "submit_register": "Agent profilini yaratish",
+    "submit_login": "Autentifikatsiya",
+    "telegram_login": "Telegram orqali kirish",
+    "processing": "Jarayonda...",
+    "authenticating": "Autentifikatsiya qilinmoqda..."
+  },
+  "dashboard": {
+    "scanner": {
+      "title": "NEYROTAHDID LABORATORIYASI",
+      "status_sweeping": "SKANERLANMOQDA...",
+      "status_calibrated": "KALIBRLANGAN",
+      "btn_scanning": "SKANER",
+      "btn_trigger": "SKANERLASHNI BOSHLASH",
+      "traffic": "TRAFIK:",
+      "sweeping": "SKANER",
+      "traffic_normal": "NORMAL",
+      "traffic_elevated": "YUQORI",
+      "traffic_low": "PAST",
+      "delay_stat": "KECHIKISH:",
+      "sec": "SEK",
+      "core_delay": "Yadro kechikishi"
+    }
+  },
+  "briefing": {
+    "case_archive_id": "ARXIV ID:",
+    "difficulty_easy": "OSON",
+    "difficulty_medium": "O'RTACHA",
+    "difficulty_hard": "QIYIN",
+    "multiplier": "MULTIPLIER",
+    "tactical_metric": "TAKTIK METRIKA",
+    "metric": {
+      "phone_call": "AUDIO DEEPFAKE",
+      "phishing": "FISHING E-POCHTA",
+      "transaction": "KARTA TO'LOVI",
+      "document": "HUJJAT TEKSHIRUVI"
+    },
+    "official_target": "RASMIY NISHON",
+    "xp_prospect": "XP KUTILMASI",
+    "rule_1": "Suhbatdoshni savollar orqali sinovdan o'tkazing. Bank xavfsizligiga mosligini tekshiring.",
+    "rule_2": "Diagnostika vositalaridan (masalan, go'shakni qo'yish) foydalaning.",
+    "rule_3": "Qo'shimcha bonus olish uchun manipulyatsiya belgilariga ega suhbatlarni belgilang."
+  },
+  "scenarios": {
+    "phone-call-1": {
+      "title": "Markaziy Bank Shoshilinch Tekshiruvi",
+      "character_intro": "Xavfsizlik Bo'limidan Aleks Merser",
+      "briefing": "Sizga Toshkent raqamidan (+998 71 200-XX-XX) qo'ng'iroq keladi. Qo'ng'iroq qiluvchi o'zini Aleks Merser, bankingizning Kiberxavfsizlik bo'limi bosh ofitseri deb tanishtiradi.",
+      "stages": [
+        {
+          "question": "Salom, men ofitser Aleks Merserman. Biz sizning hisobingizdan Samarqanddan 12 500 000 so'm miqdorida ruxsatsiz o'tkazmani aniqladik. Biz uni bloklash uchun zudlik bilan harakat qilishimiz kerak.",
+          "choices": [
+            "To'xtang, men bunday o'tkazmaga ruxsat bermaganman! Uni darhol bloklang!",
+            "Bank ilovamga rasmiy tasdiqlash xabari yoki bildirishnoma yubora olasizmi?",
+            "Siz rasmiy bank raqamidan qo'ng'iroq qilyapsizmi? Ekranda oddiy mobil raqam ko'rsatilgan."
+          ],
+          "responses": {
+            "isReal": "Ha, biz urinishni vaqtincha blokladik. Men tekshirish uchun bank ilovangizga rasmiy ruxsat so'rovini yuboraman. Iltimos, uni to'g'ridan-to'g'ri Xavfsizlik sozlamalarida tasdiqlang.",
+            "isFake": "Xakerlik hujumi tufayli tizim bloklangan! Men odatiy bildirishnomalarni yubora olmayman. Xavfsizlik blokini ochish uchun raqamingizga SMS OTP kod yubordim. Menga raqamlarni hoziroq ayting, aks holda pullaringiz ketadi!"
+          }
+        },
+        {
+          "question": "Biz qolgan mablag'ingizni davlat tomonidan nazorat qilinadigan #A99-31 sug'urta omboriga o'tkazish uchun xavfsiz o'tkazmani boshladik. Avtorizatsiya qilish uchun bizga tasdiqlash kerak.",
+          "choices": [
+            "Keling, men go'shakni qo'yaman va tasdiqlash uchun mijozlarni qo'llab-quvvatlash rasmiy raqamiga qo'ng'iroq qilaman.",
+            "Men SMS kodini ekranimga kiritaman, lekin uni sizga o'qib bermayman.",
+            "Sizning rasmiy xodim identifikatsiya kodingiz qanday?"
+          ],
+          "responses": {
+            "isReal": "Albatta. Mening ID kodim Sec-Auth-9428. Go'shakni qo'yishingiz, kartangizdagi bank raqamiga qo'ng'iroq qilishingiz va to'g'ridan-to'g'ri 9428 ichki raqamini so'rashingiz mumkin. Xavfsiz bo'ling.",
+            "isFake": "Go'shakni qo'yish endi blokirovka vaqtini tiklaydi! Agar go'shakni qo'ysangiz, tizim sizni beparvo deb hisoblaydi va sug'urta yo'qotishlaringizni qoplamaydi! Siz menga kodni o'qib berishingiz yoki ushbu ombor o'tkazmasini darhol tasdiqlashingiz kerak!"
+          }
+        },
+        {
+          "question": "Tranzit ombori vaqtinchalik. Biz xavfsiz koridorni yakunlayapmiz. Menga kodni bering yoki xavfsizlik ma'lumotlaringizni tasdiqlang.",
+          "choices": [
+            "Bu firibgarlikka o'xshaydi. Men go'shakni qo'yyapman.",
+            "Avval sizning rahbaringiz yoki bo'lim boshlig'ingiz bilan gaplashsam bo'ladimi?",
+            "Mening ma'lumotlarimni standart bank tekshiruvisiz qanday oldingiz?"
+          ],
+          "responses": {
+            "isReal": "Men sizning ehtiyotkorligingizni to'liq tushunaman. Keling, sizni darhol kiber bo'lim rahbarim Elena Vensga ulayman. Bir soniya.",
+            "isFake": "Rahbarni navbatda kutishga vaqt yo'q! Siz bahslashayotgan har bir soniyada balans ofshor kartalarga o'tkazilmoqda! Men sizga kodni hoziroq aytishingizni buyuraman!"
+          }
+        }
+      ]
+    },
+    "phishing-email-1": {
+      "title": "Tizim Autentifikatsiyasi Xatosi Haqida Ogohlantirish",
+      "character_intro": "IT Tizim Administratori (admin@secure-logon-notification.com)",
+      "briefing": "Pochtanggizga shoshilinch xabar keldi. Mavzu: '[MUHIM XAVFSIZLIK HARAKATI TALAB QILINADI] Akkauntni o'chirish'. Xat sizning kompaniyangiz logotiplari bilan juda professional ko'rinadi va parolni o'zgartirishga chaqiradi.",
+      "stages": [
+        {
+          "question": "Xavfsizlik Auditi Ogohlantirishi: Pekindagi noma'lum mijozdan g'ayrioddiy kirish aniqlandi. Agar bu siz bo'lmasangiz, 60 daqiqa ichida apparat kaliti ID ni tasdiqlash uchun havolani bosing.",
+          "choices": [
+            "Avval havolaning aniq manzilini tekshirish.",
+            "Korporativ portalimni xavfsiz qilish uchun ko'rsatmalarga amal qilish.",
+            "Pekindagi operatsiyalarimni tasdiqlashni so'rab xatga javob berish."
+          ],
+          "responses": {
+            "isReal": "Portal xavfsiz apparat autentifikatoringizni talab qiladi. Jismoniy tokeningizga shifrlangan so'rov yuboriladi. Bossangiz, domein muhrlari bilan rasmiy SSO ochiladi.",
+            "isFake": "URL manziliga kursorni olib borganda, maqsadli manzil 'Ochiq SSO Portali' vizual matni orqasida yashiringan 'https://secured-session-id-9912.ru/auth/login' ekanligi ma'lum bo'ladi. Qabul qilish sahifasida shoshilinch muddat taymeri aylanmoqda."
+          }
+        },
+        {
+          "question": "Eslatma: Shaxsni zudlik bilan tasdiqlamaslik akkauntning avtomatik bloklanishiga olib keladi va mahalliy HR xavfsizlik siyosati buzilishi haqida xabardor qilinadi.",
+          "choices": [
+            "Slack orqali rasmiy IT yordam xizmati orqali ushbu eslatmani tasdiqlashni so'rash.",
+            "Ushbu xatni to'g'ridan-to'g'ri fishingga qarshi portalga yuborish.",
+            "HR asoratlarini oldini olish uchun ma'lumotlarni kiritish."
+          ],
+          "responses": {
+            "isReal": "To'g'ri. Bizning IT yordam xizmati barcha foydalanuvchilarga mahalliy xavfsizlik xabarini yuborganligini tasdiqlaydi. Ichki Slack kanali xavfsiz e'lonni ko'rsatadi.",
+            "isFake": "Standart IT jamoasi HECH QACHON autentifikatsiya tokeni uchun HR ni jalb qilish bilan tahdid qilmaydi! Ushbu domen atigi 4 soat oldin chet el yurisdiksiyasida ro'yxatdan o'tgan."
+          }
+        }
+      ]
+    },
+    "transaction-1": {
+      "title": "Sirli Cashback Qaytarilishi",
+      "character_intro": "To'lovni Qaytarish Xizmati",
+      "briefing": "SMS keldi: 'TABRIKLAYMIZ! Siz 450,000 UZS miqdorida keshbek oldingiz. To'lovni zudlik bilan olish uchun bosing: pay-cashback-tashkent.uz/claim'. Portal sizning bankingizni tanlashingizni va karta ma'lumotlarini kiritishingizni so'raydi.",
+      "stages": [
+        {
+          "question": "To'lov Portali: Eng tezkor to'lov kanalini tanlashimiz uchun iltimos, 16 xonali karta raqamingiz, CVV kodingiz va joriy kredit limitini kiriting.",
+          "choices": [
+            "Karta ma'lumotlarini to'ldiring, lekin soxta CVV va amal qilish muddatidan foydalaning.",
+            "To'xtang. Pul olish uchun hech qachon CVV yoki amal qilish muddati kerak emas.",
+            "Tezroq to'lov tezligini ochish uchun kredit limitlarini kiriting."
+          ],
+          "responses": {
+            "isReal": "Rasmiy banklar faqat ro'yxatdan o'tgan telefon raqamingizga (HumoPay/Uzcard) yoki karta raqamiga pul o'tkazishni so'raydi. CVV hech qachon so'ralmaydi.",
+            "isFake": "Shakl tekshiruvchisi CVV 'noto'g'ri' ekanligini ta'kidlaydi va davom etishdan oldin haqiqiy raqamlarni talab qiladi. Bu sizning kartangiz ma'lumotlarini o'g'irlashga urinayotgan firibgarlik ekanligini isbotlaydi."
+          }
+        }
+      ]
+    },
+    "document-1": {
+      "title": "Korporativ Audit Rasmiy Mandati",
+      "character_intro": "Ijroiya Inspektori Tarasova",
+      "briefing": "Agentligingiz shifrlangan PDF ilovasi bilan elektron pochta oladi. Mavzu: 'Maxsus soliq imtiyozlari auditi to'g'risida bildirishnoma'. Hujjatda rasmiy davlat imzolari, muhrlari mavjud va u qat'iy maxfiy deb belgilangan. U sizdan balans daftarini ochish uchun .exe dasturini yuklab olishingizni talab qiladi.",
+      "stages": [
+        {
+          "question": "Hujjatda 2026 yilgi maxfiy soliq yozuvlari mavjud. Fayllarni shifrdan chiqarish uchun ish stantsiyangizda admin sifatida 'tax-decryptor.exe' ni ishga tushirishingiz kerak. Bu 114-moddaga muvofiq majburiydir.",
+          "choices": [
+            "Hech qanday dasturni ishga tushirishdan bosh torting. Standart CSV yoki PDF formatlarini so'rang.",
+            "'.exe' fayl generatorining raqamli imzosini tekshiring.",
+            "Shifrdan chiqaruvchini xavfsiz virtual mashinada ishga tushiring."
+          ],
+          "responses": {
+            "isReal": "Departament taxation.gov.uz da ro'yxatga olingan standart GPG shifrlangan imzolarga ega xavfsiz yuklab olish havolasini taqdim etadi.",
+            "isFake": "Ushbu dasturni ishga tushirish yashirin fon jarayonini boshlaydi, bu tizimga klaviaturani kuzatuvchi virus o'rnatishga va foydalanuvchi ma'lumotlarini uzoq serverga o'tkazishga urinadi."
+          }
+        }
+      ]
+    }
+  },
+  "badges": {
+    "first_case_solved": {
+      "name": "Birinchi Ish Hal Qilindi",
+      "desc": "Birinchi tergovingizni muvaffaqiyatli yakunlang"
+    },
+    "seasoned_investigator": {
+      "name": "Tajribali Tergovchi",
+      "desc": "25 ta tergovni yakunlang"
+    },
+    "eagle_eye": {
+      "name": "Burgut Ko'zi",
+      "desc": "10+ o'yinda 90% dan yuqori aniqlikka erishing"
+    },
+    "unstoppable": {
+      "name": "To'xtatib Bo'lmas",
+      "desc": "30 kunlik o'yin seriyasini saqlang"
+    },
+    "call_center_pro": {
+      "name": "Aloqa Markazi Pro",
+      "desc": "Telefon orqali bo'ladigan soxta chaqiriqlarni aniqlang"
+    },
+    "master_detective": {
+      "name": "Usta Detektiv",
+      "desc": "100 ta tergovni yakunlang"
+    },
+    "perfect_record": {
+      "name": "A'lo Natija",
+      "desc": "Ketma-ket 10 ta to'g'ri qaror qabul qiling"
+    },
+    "phishing_expert": {
+      "name": "Fishing Eksperti",
+      "desc": "10 ta fishing senariysini to'g'ri aniqlang"
+    },
+    "fraud_buster": {
+      "name": "Firibgarlik Fosh Etuvchi",
+      "desc": "Firibgarlik tranzaksiyalarini to'xtating"
+    },
+    "phishing_hunter": {
+      "name": "Fishing Ovchisi",
+      "desc": "5 ta fishing xatlarini 100% aniqlik bilan fosh eting"
+    },
+    "deepfake_expert": {
+      "name": "Dipfeyk Eksperti",
+      "desc": "5 ta dipfeyk telefon chaqiruvini aniqlang"
+    },
+    "financial_sentinel": {
+      "name": "Moliyaviy Qo'riqchi",
+      "desc": "3 ta soxta pul o'tkazmalarini aniqlang"
+    },
+    "zero_day_protocol": {
+      "name": "Nolinchi Kun Protokoli",
+      "desc": "Maxsus hujjat xavfini yakkalang"
+    }
+  },
+  "placement": {
+    "cognitive_calibration": "Kognitiv kalibrlash",
+    "calibration_desc": "Sizga birinchi ishlarni tayinlashdan oldin, biz asab bazasini kalibrlashimiz kerak.",
+    "q1": "1. Raqamli firibgarlik taktikalari bilan qanchalik tanishsiz?",
+    "back": "Orqaga",
+    "q2": "2. Kundalik e'tiboringizni qanday baholaysiz?",
+    "initialize": "Profilni ishga tushirish",
+    "calibration_phase": "Kalibrlash bosqichi",
+    "match": "Kalibrlash o'yini",
+    "match_desc": "Ushbu dastlabki ishlardagi natijalaringiz boshlang'ich darajangizni va qiyinchilik egri chizig'ini belgilaydi.",
+    "baseline_elo": "Joriy asosiy ELO",
+    "match_difficulty": "O'yin qiyinligi",
+    "progress": "Jarayon",
+    "commence": "Operatsiyani boshlash",
+    "directive": "Direktiva:",
+    "directive_desc": "Ushbu ishga jiddiy yondashing. Nozik manipulyatsiya taktikalarini aniqlash qobiliyatingiz kuzatilmoqda. Xatolar boshlang'ich reytingingizga sezilarli ta'sir qiladi."
+  },
+  "tournaments": {
+    "title": "Ko'p o'yinchili Operatsiyalar",
+    "subtitle": "Birga mashq qiling. Hech kimga ishonmang.",
+    "info_header_title": "Otryadni Boshqarish",
+    "info_header_desc": "Kod orqali mavjud operatsiyaga qo'shiling yoki 4 tagacha o'yinchi uchun xavfsiz lobi yarating.",
+    "join_squad": "Otryadga Qo'shilish",
+    "create_squad": "Otryad Yaratish",
+    "enter_code": "Lobbi Kodini Kiriting",
+    "join_btn": "QO'SHILISH",
+    "invalid_code": "Kod noto'g'ri yoki lobbi to'la.",
+    "or": "YOKI",
+    "scan_qr": "QR Kodni Skanerlash",
+    "tap_camera": "Kamerani ochish uchun bosing",
+    "host_op": "Operatsiya Yaratish",
+    "host_desc": "Xavfsiz lobi yarating va 3 tagacha o'yinchini taklif qiling. Siz bir vaqtda musobaqalashasiz.",
+    "game_mode": "O'yin Rejimi",
+    "standard_ops": "Standart Operatsiyalar",
+    "difficulty": "Qiyinlik",
+    "adaptive": "Moslashuvchan",
+    "max_squad": "Maksimal Otryad",
+    "operatives_count": "Operativlar",
+    "create_lobby": "Lobbi Yaratish",
+    "global_ops": "Global Operatsiyalar",
+    "info_global_title": "Global Turnirlar",
+    "info_global_desc": "Eksklyuziv nishonlar va yuqori XP uchun yuzlab o'yinchilar bilan yirik turnirlarda qatnashing.",
+    "no_global": "Hozirda faol global turnirlar yo'q.",
+    "check_back": "Keyinroq tekshiring yoki o'zingizning otryadingizni yarating.",
+    "waiting_operatives": "Operativlar Kutilmoqda...",
+    "share_code": "Ushbu kodni yoki QRni ulashing",
+    "lobby_code": "Lobbi Kodi",
+    "ready": "Tayyor",
+    "scan_to_join": "QO'SHILISH UCHUN SKANERLANG",
+    "operatives": "Operativlar",
+    "host": "Xost",
+    "awaiting": "Ulanish kutilmoqda...",
+    "simulate_join": "O'yinchini Simulyatsiya Qilish",
+    "commence_op": "Operatsiyani Boshlash",
+    "disband_squad": "Otryadni Tarqatish",
+    "error": "Lobbi yaratishda xato"
+  },
+  "arena": {
+    "connection_lost": "ALOQA UZILDI. FAOL LOBBI YO'Q.",
+    "return": "Qaytish",
+    "identity": "Sizning Yashirin Rolingiz",
+    "role_bank_staff": "BANK XODIMI",
+    "role_fraudster": "FIRIBGAR",
+    "fraudster_obj": "Maqsad: Boshqa o'yinchini ayblash yoki sezilmasdan qochish. Tergovni buzish.",
+    "bank_obj": "Maqsad: Firibgarni aniqlash va tranzaksiya jurnallarini himoya qilish.",
+    "objectives": "Faol Vazifalar",
+    "leaderboard": "Jonli Liderlar Doskasi",
+    "dashboard": "Shaxsiy Panel",
+    "identity_desc": "Sizning yashirin rolingiz. Firibgarlar sabotaj qiladi; Bank xodimlari tergov qiladi.",
+    "objectives_desc": "XP ishlash uchun ushbu vazifalarni bajaring.",
+    "leaderboard_desc": "O'yinchilar reytingini jonli kuzating.",
+    "dashboard_desc": "Vazifalaringizni, rolingizni va liderlar reytingini kuzatib boring.",
+    "scenario": "Operatsiya: Arvoh Hisob-faktura",
+    "time_remaining": "Qolgan Vaqt",
+    "active_target": "FAOL NISHON",
+    "target": "Faol Nishon",
+    "target_desc": "Hozirda tergov ostidagi o'yinchi.",
+    "hub": "Ssenariy Xabi",
+    "hub_desc": "Tergovlar va o'yin bosqichlarining vizual ko'rinishi.",
+    "commlink": "Shifrlangan Aloqa",
+    "commlink_desc": "Otryad muloqoti uchun jonli chat. Firibgarni fosh qilish uchun yolg'onlarni toping!",
+    "transmit": "Xabar yuborish...",
+    "propose_deal": "Kelishuv Taklif Qilish",
+    "propose_deal_desc": "O'yinni barvaqt tugatish uchun boshqa o'yinchilarga kelishuv taklif qiling.",
+    "finish": "TUGATISH",
+    "next": "KEYINGISI",
+    "op_concluded": "Operatsiya Yakunlandi",
+    "victory": "G'alaba qozondi:",
+    "post_game": "O'yindan Keyingi Ma'lumotlar",
+    "fraudster_was": "Firibgar:",
+    "xp_earned": "Olingan Asosiy XP:",
+    "return_lobby": "Lobbiga Qaytish",
+    "abandon": "Operatsiyani Tark Etish?",
+    "abandon_warn": "OGOHLANTIRISH: Faol turnirni tark etish ELO jarimasiga va barcha XP yo'qotilishiga olib keladi.",
+    "return_game": "O'yinga Qaytish",
+    "accept_penalty": "Jarimani Qabul Qilish"
+  }
+}

@@ -1,0 +1,89 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: realorfake-db
+    environment:
+      POSTGRES_USER: realorfake
+      POSTGRES_PASSWORD: realorfake_dev_pwd
+      POSTGRES_DB: realorfake
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U realorfake"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: realorfake-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+    image: realorfake-server
+    container_name: realorfake-server
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://realorfake:realorfake_dev_pwd@db:5432/realorfake
+      - REDIS_URL=redis://redis:6379
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-your_gemini_api_key_here}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-your_telegram_bot_token_here}
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret_here}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-your_jwt_refresh_secret_here}
+      - PORT=3001
+      - NODE_ENV=development
+      - APP_URL=http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: sh -c "npm run migrate && npm run dev"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  client:
+    build:
+      context: .
+    image: realorfake-client
+    container_name: realorfake-client
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:3001/api/v1
+      - API_PROXY_TARGET=http://server:3001
+    depends_on:
+      - server
+    command: npm run dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  adminer:
+    image: adminer
+    container_name: realorfake-adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+  redisdata:

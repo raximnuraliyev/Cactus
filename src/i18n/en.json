@@ -1,0 +1,423 @@
+{
+  "app_title": "Cactus",
+  "tagline": "AI-Powered Anti-Fraud Detective Game",
+  "splash_sub": "Train yourself to spot fraudsters, phishing attacks, and deepfakes before they steal your money. Pressure-test your defenses interactively.",
+  "guest_play": "Play as Guest",
+  "tg_login": "Access via Telegram",
+  "register": "Create Account",
+  "login": "Sign In",
+  "email": "Email",
+  "password": "Password",
+  "username": "Username",
+  "confirm_password": "Confirm Password",
+  "forgot_password": "Forgot password?",
+  "no_account": "Don't have an account?",
+  "have_account": "Already have an account?",
+  "or_separator": "OR ENFORCE TELEGRAM AUTH SYSTEM",
+  "footer_text": "SECURE AGENCY KEY DIRECTIVE V.1.0 • ASIA-SOUTHEAST-REG",
+  "main_menu": {
+    "dashboard": "Dashboard",
+    "leaderboard": "Leaderboard",
+    "badges": "Achievements",
+    "history": "History",
+    "settings": "Settings",
+    "profile": "Profile",
+    "tournaments": "Tournaments",
+    "achievements": "Achievements"
+  },
+  "user_lvl": "Level",
+  "daily_challenge": "Daily Challenge",
+  "days_streak": "day streak",
+  "quick_play": "Quick Play",
+  "play_now": "Play Now",
+  "scenario_briefing": "Scenario Briefing",
+  "back_to_dashboard": "Back to Dashboard",
+  "daily_title": "Operative Security Sweep",
+  "daily_desc": "Resets at midnight. Complete today's shared event to secure double bonus XP and secure your daily streak.",
+  "daily_start": "Initiate Daily Probe",
+  "daily_done": "Challenge Secure",
+  "scenario_cabinet": "Tactical Scenarios Cabinets",
+  "neural_lab": "Neural threat diagnostic laboratory",
+  "neural_lab_desc": "Inspect real-time simulated neural threat levels and network latencies. Run a tactical compiled sweep over active threat sectors below.",
+  "category_phone": "Voice Calls",
+  "category_phishing": "Phishing E-mails",
+  "category_transaction": "Card Refunds",
+  "category_document": "Audit Leaks",
+  "active_game": {
+    "transcript": "Conversation Log",
+    "tools_panel": "Investigation Tools & Diagnostics",
+    "hang_up": "Hang Up & Call Back Official Portal",
+    "employee_id": "Request Officer ID Code",
+    "complain": "Ask for Team Supervisor",
+    "flag_suspicious": "Flag Current Dialog as Clue",
+    "text_placeholder": "Type your query to challenge the suspect...",
+    "send_btn": "Transmit",
+    "finish_game": "Proceed to Evidence Board",
+    "evidence_title": "Security Evidence Board",
+    "tag_clue": "Flagged Suspicious Event",
+    "gather_clues": "You gathered clues that highlight critical red flags.",
+    "commit_verdict": "Submit Official Security Case Verdict",
+    "detective_choice": "Who is this person?",
+    "abort_case": "Abort Case",
+    "ai_loading": "AI decrypting suspect terminal stream...",
+    "flag_btn": "Flag Red Flag",
+    "hang_up_short": "Hang Up Securely",
+    "query_id": "Query ID Code",
+    "call_supervisor": "Call Supervisor",
+    "flag_suspicious_short": "Flag suspicious UZS"
+  },
+  "verdicts": {
+    "legit": "Real Employee",
+    "scam": "Fraudster / Impostor",
+    "reasoning": "State your analysis technique to submit:",
+    "tactic_heading": "Manipulation Tactic Suspicion",
+    "legit_desc": "Identified as official banking compliance process",
+    "scam_desc": "Identified spoofing, coercion, or malware delivery",
+    "choose_tactic": "-- Choose Manipulation Technique --",
+    "review_logs": "Review Logs",
+    "transmit": "Transmit Case File"
+  },
+  "debrief_page": {
+    "verdict_true": "CASE RESOLVED: EXCELLENT DETECTIVE WORK!",
+    "verdict_false": "CASE COMPROMISED: FRAUD SUCCESSFUL!",
+    "xp_gained": "XP Transferred",
+    "clues_analyzed": "Red Flags Analysis Details",
+    "tactics_exchanged": "Psychological Method Used",
+    "clues_found": "Evidence Uncovered",
+    "clues_missed": "Overlooked Breaches",
+    "play_again": "Initiate Brand New Case",
+    "go_home": "Return to Dashboard",
+    "correct": "Correct Verdict",
+    "incorrect": "Incorrect Verdict",
+    "share": "Share Case Report",
+    "grade_s": "GRADE S",
+    "grade_f": "GRADE F",
+    "neural_debrief": "Neural forensics debriefing",
+    "cognitive_method": "COGNITIVE METHOD IDENTIFIED:",
+    "accuracy_rating": "Accuracy Rating",
+    "evidence_uncovered": "Evidence Uncovered",
+    "overlooked_signal": "Overlooked Signal",
+    "badges_earned": "Badges Earned"
+  },
+  "leaderboard": {
+    "title": "Top Detectives Index",
+    "subtitle": "Real-time synchronization of anti-fraud accuracy scores.",
+    "weekly": "Weekly Hunt",
+    "alltime": "Legends Board",
+    "search": "Query operative code...",
+    "rank": "Rank",
+    "detective": "Cyber Detective",
+    "level": "Admin Level",
+    "xp": "XP Points",
+    "no_results": "No operatives matched query.",
+    "me_badge": "ME",
+    "badge_label": "SECURE GLOBAL RANKINGS"
+  },
+  "badges_page": {
+    "title": "Active Achievements",
+    "subtitle": "Collect security tokens for proving flawless tactical vigilance.",
+    "unlocked": "UNLOCKED",
+    "locked": "LOCKED",
+    "calibration": "CABINET CALIBRATION STATUS",
+    "badge_label": "FORENSIC DECORATIONS CABINET"
+  },
+  "settings": {
+    "title": "System Settings",
+    "subtitle": "Calibrate language parameters and agency profile code tags.",
+    "username_label": "Detective Profile Username",
+    "username_max": "Maximum length: 32 character tokens",
+    "lang_label": "Language Calibration",
+    "notifications": "Daily Challenge Notifications",
+    "privacy": "Private Profile",
+    "reset_label": "Reset Local State Cache",
+    "reset_btn": "Clear Memory Storage",
+    "reset_confirm": "Confirm erasing agency credentials score card parameters? This wipes local caches.",
+    "save": "Save Settings",
+    "saved": "Settings saved",
+    "saving": "Saving...",
+    "logout": "Logout / Disconnect"
+  },
+  "profile": {
+    "title": "Agent Profile",
+    "total_games": "Total Games",
+    "accuracy": "Accuracy",
+    "correct_verdicts": "Correct Verdicts",
+    "best_streak": "Best Streak",
+    "current_streak": "Current Streak",
+    "recent_history": "Recent Case History",
+    "no_history": "No completed cases yet. Start investigating!",
+    "edit_username": "Edit Username",
+    "xp_tracker": "EXP Tracker",
+    "data_management": "Data Management",
+    "export_data": "Export Data",
+    "import_data": "Import Data",
+    "clear_cache": "Clear Cache",
+    "import_success": "Profile imported successfully!",
+    "import_error": "Invalid profile data."
+  },
+  "auth": {
+    "register_title": "Agent Registration",
+    "register_subtitle": "Create your cyber detective identity to track progress and compete globally.",
+    "login_title": "Agent Authentication",
+    "login_subtitle": "Verify identity to access the secure investigation terminal.",
+    "email_required": "Email is required",
+    "email_invalid": "Enter a valid email address",
+    "password_required": "Password is required",
+    "password_min": "Password must be 8+ characters with at least one number",
+    "username_required": "Username is required",
+    "username_min": "Username must be 2-32 characters",
+    "submit_register": "Deploy Agent Profile",
+    "submit_login": "Authenticate Terminal",
+    "telegram_login": "Telegram Bot Login",
+    "processing": "Processing...",
+    "authenticating": "Authenticating..."
+  },
+  "dashboard": {
+    "scanner": {
+      "title": "NEURAL THREAT DIAGNOSTIC",
+      "status_sweeping": "SWEEPING...",
+      "status_calibrated": "CALIBRATED",
+      "btn_scanning": "SCANNING",
+      "btn_trigger": "TRIGGER CORE SCAN",
+      "traffic": "TRAFFIC:",
+      "sweeping": "SWEEPING",
+      "traffic_normal": "NORMAL",
+      "traffic_elevated": "ELEVATED",
+      "traffic_low": "LOW",
+      "delay_stat": "DELAY STAT:",
+      "sec": "SEC",
+      "core_delay": "Core Delay"
+    }
+  },
+  "briefing": {
+    "case_archive_id": "CASE ARCHIVE ID:",
+    "difficulty_easy": "EASY",
+    "difficulty_medium": "MEDIUM",
+    "difficulty_hard": "HARD",
+    "multiplier": "MULTIPLIER",
+    "tactical_metric": "TACTICAL METRIC",
+    "metric": {
+      "phone_call": "AUDIO DEEPFAKE",
+      "phishing": "PHISHING MAIL",
+      "transaction": "PAYMENT SECURE",
+      "document": "DOC VERIFY"
+    },
+    "official_target": "OFFICIAL TARGET",
+    "xp_prospect": "XP PROSPECT",
+    "rule_1": "Probe the target using dialogue queries. Check if accounts, credentials, and names pass banking authenticity.",
+    "rule_2": "Deploy interactive investigation tools (e.g., Hang Up and dial helpline) to diagnose potential bypass attempts.",
+    "rule_3": "Flag dialogue turns containing high-pressure manipulation clues to secure evidence bonuses."
+  },
+  "scenarios": {
+    "phone-call-1": {
+      "title": "Central Bank Urgent Verification",
+      "character_intro": "Alex Mercer from Security Operations Division",
+      "briefing": "You receive an incoming call from a Tashkent number (+998 71 200-XX-XX). The caller introduces himself as Alex Mercer, Senior Officer from the Cyber-Security division of your main bank.",
+      "stages": [
+        {
+          "question": "Hello, this is officer Alex Mercer. We detected an unauthorized transaction of 12,500,000 UZS starting on your account from Samarkand. We must act immediately to block it.",
+          "choices": [
+            "Wait, I didn't authorize any such transaction! Block it now!",
+            "Can you send me a official verification message or notification inside my bank app?",
+            "Are you calling from the official bank number? It shows a random mobile number on screen."
+          ],
+          "responses": {
+            "isReal": "Yes, we have blocked the attempt temporarily. I will send a formal authorization request to your bank app for verification. Please approve that directly under Security Settings.",
+            "isFake": "The system is locked because of the hack! I cannot send regular notifications. I have sent an SMS OTP code to your number to initiate a safety bypass. Tell me the digits right now or your money is gone!"
+          }
+        },
+        {
+          "question": "We have initiated a secure transfer to move your remaining funds into state-controlled insurance vault #A99-31. To authorize, we need verification.",
+          "choices": [
+            "Let me hang up and dial your official customer helpline to confirm.",
+            "I will type the SMS code into my screen, but I won't read it to you.",
+            "What is your official Employee Identity code?"
+          ],
+          "responses": {
+            "isReal": "Absolutely. My ID is Sec-Auth-9428. You can hang up, dial the bank number on your card, and ask for extension 9428 directly. Stay safe.",
+            "isFake": "Hanging up now resets the lock period! If you hang up, the system considers you negligent, and the insurance will not cover your losses! You must read me the code or approve this vault transfer immediately!"
+          }
+        },
+        {
+          "question": "The transit vault is temporary. We are finalising the safe corridor. Give me the code or verify your security details.",
+          "choices": [
+            "This sounds like a scam. I am hanging up.",
+            "Can I speak to your supervisor or department lead first?",
+            "How did you get my details without standard bank verification?"
+          ],
+          "responses": {
+            "isReal": "I understand your caution completely. Let me transfer you immediately to my cyber division supervisor, Elena Vance. One moment.",
+            "isFake": "There is no time to queue for a supervisor! Every second you argue, the balance is being routed to offshore cards! I command you to tell me the code now!"
+          }
+        }
+      ]
+    },
+    "phishing-email-1": {
+      "title": "System Authentication Failure Alert",
+      "character_intro": "IT System Administrator (admin@secure-logon-notification.com)",
+      "briefing": "You receive an urgent flag in your inbox. Topic: '[CRITICAL SECURITY ACTION REQUIRED] Account Deactivation'. The email looks highly professional, wearing your company's full security headers and official logos, urging a password change.",
+      "stages": [
+        {
+          "question": "Security Audit Warning: Unusual Login detected from an unrecognized client in Beijing. If this wasn't you, click the link to confirm your hardware key ID within 60 minutes.",
+          "choices": [
+            "Inspect the exact link destination first.",
+            "Follow the instructions to secure my corporate portal.",
+            "Reply to the email requesting validation of my Beijing operations."
+          ],
+          "responses": {
+            "isReal": "The portal requires your secure hardware authenticator. An encrypted challenge is sent to your physical token. If you click, it opens the official corporate Single-Sign-On with domain stamp certs.",
+            "isFake": "Hovering over the URL reveals the target is 'https://secured-session-id-9912.ru/auth/login' which is hidden behind visual text saying 'Official SSO Portal'. Urgent deadline timer is spinning on the landing page."
+          }
+        },
+        {
+          "question": "Notice: Failure to verify identity instantly will trigger automatic account lock, and local HR compliance will be notified of security policy bypass.",
+          "choices": [
+            "Request validation of this notice via official IT helpline in Slack.",
+            "Submit this email to the anti-phishing portal directly.",
+            "Fill in credentials to avoid HR complications."
+          ],
+          "responses": {
+            "isReal": "Correct. Our IT helpdesk verifies that they sent a localized security dispatch to all users. The internal Slack channel lists the safe announcement.",
+            "isFake": "A standard IT team would NEVER threaten HR suspension over a routing authentication token! This domain was registered only 4 hours ago in a foreign jurisdiction."
+          }
+        }
+      ]
+    },
+    "transaction-1": {
+      "title": "Mysterious Cashback Refund Redirect",
+      "character_intro": "Refund Operations Desk",
+      "briefing": "An SMS arrives: 'CONGRATULATIONS! You received a cashback reward of 450,000 UZS. Click to claim your payout instantly: pay-cashback-tashkent.uz/claim'. The portal asks you to choose your bank and type your card billing parameters.",
+      "stages": [
+        {
+          "question": "Claim Portal: Please enter your 16-digit card number, CVV code, and current credit limit so we can choose the fastest payout channel.",
+          "choices": [
+            "Fill in the card details but use a fake CVV and expiry date.",
+            "Stop. You never need a CVV or expiration date to receive money.",
+            "Input credit limits to unlock the higher tier payout speed."
+          ],
+          "responses": {
+            "isReal": "Official banks only ask to send UZS to your registered phone number (via HumoPay/Uzcard standard transfer) or standard card number. CVV is strictly never requested.",
+            "isFake": "The form validator insists that the CVV is 'incorrect' and demands the real digits before proceeding, proving it is a credential harvester trying to clone your card credentials."
+          }
+        }
+      ]
+    },
+    "document-1": {
+      "title": "Corporate Audit Official Mandate",
+      "character_intro": "Executive Inspector Tarasova",
+      "briefing": "Your agency receives an email with an encrypted PDF attachment. Topic: 'Notice of Special Taxation Offsets audit'. The document carries official government signatures, stamps, and is watermarked strictly secret. It demands you to download an executable decryption tool to open the balance ledger.",
+      "stages": [
+        {
+          "question": "The document contains confidential tax records of 2026. You must execute 'tax-decryptor.exe' as admin on your physical workstation to decrypt the files. This is mandatory under penal code 114.",
+          "choices": [
+            "Refuse to run any executable. Request standard CSV or PDF formats.",
+            "Examine the digital signature of the '.exe' generator.",
+            "Run the decryptor in a secure sandbox VM or container."
+          ],
+          "responses": {
+            "isReal": "The department provides a secure download link containing standard cryptographic GPG signatures verified against the department's public keys listed on taxation.gov.uz.",
+            "isFake": "Executing this program initiates a stealth background process attempting to inject an encrypted keylogger and transfer user credentials to a remote command & control server."
+          }
+        }
+      ]
+    }
+  },
+  "placement": {
+    "cognitive_calibration": "Cognitive Calibration",
+    "calibration_desc": "Before we assign your first cases, we need to calibrate your neural baseline.",
+    "q1": "1. How familiar are you with digital fraud tactics?",
+    "back": "Back",
+    "q2": "2. How would you rate your daily attentiveness?",
+    "initialize": "Initialize Profile",
+    "calibration_phase": "Calibration Phase",
+    "match": "Placement Match",
+    "match_desc": "Your performance in these initial cases will determine your starting rank and difficulty curve.",
+    "baseline_elo": "Current Baseline ELO",
+    "match_difficulty": "Match Difficulty",
+    "progress": "Progress",
+    "commence": "Commence Operation",
+    "directive": "Directive:",
+    "directive_desc": "Treat this case seriously. Your ability to detect subtle manipulation tactics is being monitored. Mistakes will significantly impact your initial rating."
+  },
+  "tournaments": {
+    "title": "Multiplayer Ops",
+    "subtitle": "Train together. Trust no one.",
+    "info_header_title": "Squad Management",
+    "info_header_desc": "Join an existing operation with a code, or host your own secure lobby for up to 4 operatives.",
+    "join_squad": "Join Squad",
+    "create_squad": "Create Squad",
+    "enter_code": "Enter Lobby Code",
+    "join_btn": "JOIN",
+    "invalid_code": "Invalid or full lobby.",
+    "or": "OR",
+    "scan_qr": "Scan Operative QR",
+    "tap_camera": "Tap to open camera",
+    "host_op": "Host an Operation",
+    "host_desc": "Create a secure lobby and invite up to 3 other operatives. You will compete on the same cases simultaneously.",
+    "game_mode": "Game Mode",
+    "standard_ops": "Standard Ops",
+    "difficulty": "Difficulty",
+    "adaptive": "Adaptive",
+    "max_squad": "Max Squad Size",
+    "operatives_count": "Operatives",
+    "create_lobby": "Create Lobby",
+    "global_ops": "Global Operations",
+    "info_global_title": "Global Tournaments",
+    "info_global_desc": "Compete in massive scheduled events against hundreds of players for exclusive badges and high XP payouts.",
+    "no_global": "No global tournaments active currently.",
+    "check_back": "Check back later or start your own squad.",
+    "waiting_operatives": "Waiting for Operatives...",
+    "share_code": "Share this code or QR with your squad",
+    "lobby_code": "Lobby Code",
+    "ready": "Ready",
+    "scan_to_join": "SCAN TO JOIN",
+    "operatives": "Operatives",
+    "host": "Host",
+    "awaiting": "Awaiting connection...",
+    "simulate_join": "Simulate Player Join",
+    "commence_op": "Commence Operation",
+    "disband_squad": "Disband Squad",
+    "error": "Error creating lobby"
+  },
+  "arena": {
+    "connection_lost": "CONNECTION LOST. NO ACTIVE LOBBY.",
+    "return": "Return",
+    "identity": "Your Hidden Identity",
+    "role_bank_staff": "BANK STAFF",
+    "abandon_warning_2": "Your stats will be negatively impacted.",
+    "role_fraudster": "FRAUDSTER",
+    "fraudster_obj": "Objective: Frame another player or escape undetected. Sabotage the investigation.",
+    "bank_obj": "Objective: Identify the fraudster and secure the transaction logs.",
+    "objectives": "Active Objectives",
+    "leaderboard": "Live Leaderboard",
+    "dashboard": "Personal Dashboard",
+    "identity_desc": "Your secret role. Fraudsters sabotage; Bank Staff investigate.",
+    "objectives_desc": "Complete these AI-verified tasks to earn XP.",
+    "leaderboard_desc": "Monitor player rankings in real-time.",
+    "dashboard_desc": "Track your objectives, view your secret role, and monitor leaderboard rankings based on XP.",
+    "scenario": "Operation: Phantom Invoice",
+    "time_remaining": "Time Remaining",
+    "active_target": "ACTIVE TARGET",
+    "target": "Active Target",
+    "target_desc": "The player currently under investigation.",
+    "hub": "Scenario Hub",
+    "hub_desc": "Visual representation of active interrogations and game phases.",
+    "commlink": "Encrypted Comm-Link",
+    "commlink_desc": "Live chatbox for squad communication. Find inconsistencies in stories to expose the Fraudster!",
+    "transmit": "Transmit message...",
+    "propose_deal": "Propose Deal",
+    "propose_deal_desc": "Offer a deal to other players to end the game early.",
+    "finish": "FINISH",
+    "next": "NEXT",
+    "op_concluded": "Operation Concluded",
+    "victory": "Victory goes to the",
+    "post_game": "Post-Game Intel",
+    "fraudster_was": "The Fraudster was:",
+    "xp_earned": "Your Base XP Earned:",
+    "return_lobby": "Return to Lobby",
+    "abandon": "Abandon Operation?",
+    "abandon_warn": "WARNING: Abandoning an active tournament will result in an immediate ELO penalty and forfeit of all session XP.",
+    "return_game": "Return to Game",
+    "accept_penalty": "Accept Penalty"
+  }
+}
