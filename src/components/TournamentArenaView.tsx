@@ -24,12 +24,31 @@ import {
   Globe,
   ChevronDown
 } from "lucide-react";
-import { getLobby, sendMessage, endGame, completeTask } from "../api/tournaments";
+import { getLobby, sendMessage, endGame, completeTask, finishTour } from "../api/tournaments";
 import type { TournamentLobby } from "../types";
 
 const LOCAL_STORAGE_LOBBY_KEY = "cactus_active_lobby";
 
   // Guided tour steps will be built inside the component using t()
+
+const HighlightBlock = ({ 
+  isActive, 
+  tooltipNode, 
+  children, 
+  className = "" 
+}: { 
+  isActive: boolean, 
+  tooltipNode: React.ReactNode, 
+  children: React.ReactNode, 
+  className?: string 
+}) => {
+  return (
+    <div className={`relative transition-all duration-500 rounded-2xl ${isActive ? "z-[50] scale-[1.02] bg-gray-900 ring-2 ring-green-500 shadow-[0_0_50px_rgba(74,222,128,0.3)]" : "z-10"} ${className}`}>
+      {children}
+      {isActive && tooltipNode}
+    </div>
+  );
+};
 
 export default function TournamentArenaView() {
   const { user } = useAuth();
@@ -83,6 +102,9 @@ export default function TournamentArenaView() {
     } else {
       setTourStep(null);
       sessionStorage.setItem(`arena_tour_done_${lobby?.id || "temp"}`, "true");
+      if (lobby?.id && user?.username) {
+        finishTour(lobby.id, user.username).catch(console.error);
+      }
     }
   };
 
@@ -95,9 +117,27 @@ export default function TournamentArenaView() {
     const stepDef = TOUR_STEPS.find(s => s.id === sectionId);
     if (!stepDef) return null;
 
-    const positionClass = sectionId === 'propose_deal' 
-      ? 'bottom-[calc(100%+1rem)] left-1/2 -translate-x-1/2' 
-      : 'top-16 left-1/2 -translate-x-1/2';
+    let positionClass = '';
+    switch(sectionId) {
+      case 'identity':
+      case 'objectives':
+        positionClass = 'top-[calc(100%+1rem)] left-0 lg:top-0 lg:left-[calc(100%+1rem)]';
+        break;
+      case 'leaderboard':
+        positionClass = 'bottom-[calc(100%+1rem)] left-0 lg:bottom-0 lg:top-auto lg:left-[calc(100%+1rem)]';
+        break;
+      case 'hub':
+        positionClass = 'top-1/3 left-1/3 -translate-x-1/4 -translate-y-1/2';
+        break;
+      case 'commlink':
+        positionClass = 'top-[calc(100%+1rem)] left-0 lg:left-auto lg:right-[calc(100%+1rem)] lg:top-0';
+        break;
+      case 'propose_deal':
+        positionClass = 'bottom-[calc(100%+1rem)] left-1/2 -translate-x-1/2';
+        break;
+      default:
+        positionClass = 'top-16 left-1/2 -translate-x-1/2';
+    }
 
     return (
       <div className={`absolute ${positionClass} w-72 sm:w-80 bg-gray-900 border border-green-500/50 rounded-xl p-5 shadow-2xl z-[80] animate-fade-in-up`}>
@@ -133,15 +173,7 @@ export default function TournamentArenaView() {
     );
   };
   
-  const HighlightBlock = ({ id, children, className = "" }: { id: string, children: React.ReactNode, className?: string }) => {
-    const isActive = activeOverlayId === id;
-    return (
-      <div className={`relative transition-all duration-500 rounded-2xl ${isActive ? "z-[50] scale-[1.02] bg-gray-900 ring-2 ring-green-500 shadow-[0_0_50px_rgba(74,222,128,0.3)]" : "z-10"} ${className}`}>
-        {children}
-        {isActive && renderTooltip(id)}
-      </div>
-    );
-  };
+
   
   const [showResults, setShowResults] = useState(false);
   const [activeNode, setActiveNode] = useState(1);
@@ -166,12 +198,14 @@ export default function TournamentArenaView() {
             localStorage.setItem(LOCAL_STORAGE_LOBBY_KEY, JSON.stringify(updated));
             
             // Sync Timer
-            if (updated.startTime && updated.endTime) {
+            if (updated.status === 'active' && updated.startTime && updated.endTime) {
               const remaining = Math.max(0, Math.floor((updated.endTime - Date.now()) / 1000));
               setTimeLeft(remaining);
-              if (remaining === 0 && updated.status === 'active' && updated.hostUsername === user?.username) {
+              if (remaining === 0 && updated.hostUsername === user?.username) {
                 endGame(updated.id); // host ends game
               }
+            } else if (updated.status === 'tour') {
+              setTimeLeft(300); // 5 mins static waiting
             }
 
             if (updated.status === 'completed') {
@@ -179,7 +213,9 @@ export default function TournamentArenaView() {
             }
           })
           .catch(() => {
-            // maybe lobby deleted
+            // Lobby deleted (e.g., server restart or host aborted)
+            localStorage.removeItem(LOCAL_STORAGE_LOBBY_KEY);
+            navigate("/tournaments");
           });
       }, 1000);
     }
@@ -260,15 +296,23 @@ export default function TournamentArenaView() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent shadow-[0_0_15px_rgba(239,68,68,0.5)] z-0 animate-pulse" />
 
       {/* Global Dark Overlay for Tour/Focus */}
-      {isOverlayActive && (
+      {(isOverlayActive || lobby.status === 'tour') && (
         <div 
-          className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-md transition-all" 
+          className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-md transition-all flex flex-col items-center justify-center pointer-events-auto" 
           onClick={() => { if(focusedSection) setFocusedSection(null) }} 
-        />
+        >
+          {lobby.status === 'tour' && tourStep === null && !focusedSection && (
+            <div className="bg-gray-900 border border-green-500/50 p-6 rounded-xl shadow-[0_0_50px_rgba(74,222,128,0.2)] flex flex-col items-center z-[100]">
+              <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-4" />
+              <h2 className="text-xl font-black text-green-400 uppercase tracking-widest">{t("arena.waiting_players") || "Waiting for Squad"}</h2>
+              <p className="text-gray-400 font-mono text-sm mt-2 text-center max-w-sm">{t("arena.waiting_desc") || "Other operatives are still reviewing the briefing..."}</p>
+            </div>
+          )}
+        </div>
       )}
 
       {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 relative">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 relative min-h-0">
         
         {/* DASHBOARD COLUMN */}
         <div className="lg:col-span-3 flex flex-col gap-4 relative">
@@ -303,7 +347,7 @@ export default function TournamentArenaView() {
             </button>
           </div>
 
-          <HighlightBlock id="identity">
+          <HighlightBlock isActive={activeOverlayId === "identity"} tooltipNode={renderTooltip("identity")}>
             <div className={`glass-card border-2 p-4 rounded-2xl flex flex-col shadow-xl backdrop-blur-xl ${
               isFraudster ? 'bg-red-950/40 border-red-500/50 shadow-red-500/10' : 'bg-blue-950/40 border-blue-500/50 shadow-blue-500/10'
             }`}>
@@ -331,7 +375,7 @@ export default function TournamentArenaView() {
             </div>
           </HighlightBlock>
 
-          <HighlightBlock id="objectives" className="flex-1 min-h-[250px]">
+          <HighlightBlock isActive={activeOverlayId === "objectives"} tooltipNode={renderTooltip("objectives")} className="flex-1 min-h-[250px]">
             <div className="glass-card border t-border rounded-2xl flex flex-col h-full shadow-xl bg-black/20 backdrop-blur-md relative overflow-hidden">
               {/* Animated background gradient */}
               <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
@@ -372,7 +416,7 @@ export default function TournamentArenaView() {
             </div>
           </HighlightBlock>
 
-          <HighlightBlock id="leaderboard">
+          <HighlightBlock isActive={activeOverlayId === "leaderboard"} tooltipNode={renderTooltip("leaderboard")}>
             <div className="glass-card border t-border rounded-2xl shadow-xl bg-black/20 backdrop-blur-md overflow-hidden relative">
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl rounded-full" />
               <div className="p-4 border-b t-border bg-black/40 flex items-center justify-between">
@@ -404,9 +448,9 @@ export default function TournamentArenaView() {
         {/* ==================================================================================== */}
         {/* MIDDLE COLUMN: ACTIVE GAME/SCENARIO */}
         {/* ==================================================================================== */}
-        <div className="lg:col-span-6 flex flex-col gap-4 relative">
+        <div className="lg:col-span-6 flex flex-col gap-4 relative min-h-0 overflow-y-auto lg:overflow-visible">
           
-          <HighlightBlock id="hub" className="flex-1 flex flex-col">
+          <HighlightBlock isActive={activeOverlayId === "hub"} tooltipNode={renderTooltip("hub")} className="flex-1 flex flex-col">
             <div className="glass-card border t-border rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between shadow-xl shadow-black/20 backdrop-blur-xl bg-black/40 gap-4 sm:gap-0 shrink-0">
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <div className="w-10 h-10 rounded-xl bg-green-500/20 border border-green-500/50 flex items-center justify-center shrink-0">
@@ -505,9 +549,9 @@ export default function TournamentArenaView() {
         {/* ==================================================================================== */}
         {/* RIGHT COLUMN: COMM-LINK (CHAT) */}
         {/* ==================================================================================== */}
-        <div className="lg:col-span-3 flex flex-col gap-2 relative">
-          <HighlightBlock id="commlink" className="flex-1 flex flex-col">
-            <div className="glass-card border t-border rounded-2xl flex flex-col overflow-hidden shadow-xl shadow-black/20 backdrop-blur-xl bg-black/40 relative flex-1">
+        <div className="lg:col-span-3 flex flex-col gap-2 relative min-h-0 overflow-y-auto lg:overflow-visible">
+          <HighlightBlock isActive={activeOverlayId === "commlink"} tooltipNode={renderTooltip("commlink")} className="flex-1 flex flex-col min-h-0">
+            <div className="glass-card border t-border rounded-2xl flex flex-col overflow-hidden shadow-xl shadow-black/20 backdrop-blur-xl bg-black/40 relative flex-1 min-h-0">
               <div className="p-4 t-bg-secondary border-b t-border flex flex-col shrink-0">
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
@@ -570,7 +614,7 @@ export default function TournamentArenaView() {
             </div>
           </HighlightBlock>
 
-          <HighlightBlock id="propose_deal">
+          <HighlightBlock isActive={activeOverlayId === "propose_deal"} tooltipNode={renderTooltip("propose_deal")}>
             <button onClick={handleProposeDeal} disabled={lobby.status === 'completed'} className="w-full py-3 sm:py-4 border-2 border-blue-500/30 hover:border-blue-500/50 bg-blue-950/30 hover:bg-blue-900/50 rounded-xl transition-all flex items-center justify-center gap-2 text-blue-400 hover:text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]">
               <Handshake className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="font-bold text-xs sm:text-sm tracking-widest uppercase">{t("arena.propose_deal") || "Propose Deal"}</span>

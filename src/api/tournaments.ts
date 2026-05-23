@@ -21,6 +21,10 @@ export function startGame(id: string) {
   return apiPost<{ data: { lobby: TournamentLobby } }>(`/api/v1/tournaments/lobby/${id}/start`);
 }
 
+export function finishTour(id: string, username: string) {
+  return apiPost<{ data: { lobby: TournamentLobby } }>(`/api/v1/tournaments/lobby/${id}/finishTour`, { username });
+}
+
 export function sendMessage(id: string, username: string, content: string, time: string) {
   return apiPost<{ data: { lobby: TournamentLobby } }>(`/api/v1/tournaments/lobby/${id}/message`, { username, content, time });
 }

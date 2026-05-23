@@ -403,3 +403,49 @@ export const TRANSLATIONS = {
     }
   }
 };
+
+export const MINI_GAME_SCENARIOS: import('./types').MiniGameScenario[] = [
+  {
+    id: "mg-1",
+    title: "The Urgent CEO Request",
+    category: "Phishing & Pretexting",
+    situation: "You receive a message on Telegram from an account claiming to be your CEO, Farrukh. It has his profile picture. 'I am stuck in a confidential meeting. I need you to immediately buy 5 Apple Gift Cards ($100 each) for our foreign clients and send me the codes. I will reimburse you by the end of the day.'",
+    question: "What is your immediate response?",
+    timeLimit: 15,
+    hint: "Executives never use personal gift cards for corporate expenses, and attackers often exploit the 'Authority' principle to rush you.",
+    choices: [
+      { text: "Comply immediately to impress the boss.", isCorrect: false, awarenessReward: 0, resilienceReward: -5 },
+      { text: "Call Farrukh directly on his known number to verify.", isCorrect: true, awarenessReward: 10, resilienceReward: 15 },
+      { text: "Ask the Telegram account for proof of identity.", isCorrect: false, awarenessReward: 5, resilienceReward: 0 },
+      { text: "Ignore it, but don't report it.", isCorrect: false, awarenessReward: 2, resilienceReward: 5 }
+    ]
+  },
+  {
+    id: "mg-2",
+    title: "Free Security Audit",
+    category: "Baiting",
+    situation: "A well-dressed individual walks into your office lobby offering 'Free USB Security Audits' for staff. They hand you a branded USB flash drive and say, 'Just plug this into your laptop, and it will scan your local files for malware completely free.'",
+    question: "What should you do?",
+    timeLimit: 10,
+    hint: "Physical media is a common vector for deploying ransomware or keyloggers.",
+    choices: [
+      { text: "Plug it into a secure, isolated sandbox computer.", isCorrect: false, awarenessReward: 5, resilienceReward: 5 },
+      { text: "Politely decline and immediately notify building security.", isCorrect: true, awarenessReward: 15, resilienceReward: 10 },
+      { text: "Plug it into your work laptop. It's free security!", isCorrect: false, awarenessReward: 0, resilienceReward: -10 }
+    ]
+  },
+  {
+    id: "mg-3",
+    title: "IT Support Call",
+    category: "Quid Pro Quo",
+    situation: "Your phone rings. 'Hi, this is Tech Support. We are fixing the slow internet issue reported on your floor. We just need you to install this remote viewing tool so we can update your drivers.'",
+    question: "How do you handle this?",
+    timeLimit: 12,
+    hint: "Never install remote software from unsolicited callers, even if they know your floor.",
+    choices: [
+      { text: "Install the software to get faster internet.", isCorrect: false, awarenessReward: 0, resilienceReward: 0 },
+      { text: "Ask for their employee ID and verify it internally.", isCorrect: false, awarenessReward: 10, resilienceReward: 5 },
+      { text: "Hang up and call the official IT Helpdesk extension to confirm.", isCorrect: true, awarenessReward: 15, resilienceReward: 15 }
+    ]
+  }
+];

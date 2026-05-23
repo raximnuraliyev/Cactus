@@ -6,7 +6,8 @@ export interface TournamentLobby {
   hostUsername: string;
   players: string[];
   maxPlayers: number;
-  status: 'waiting' | 'active' | 'completed';
+  status: 'waiting' | 'tour' | 'active' | 'completed';
+  tourFinishedBy?: string[];
   phase?: number;
   roles?: Record<string, string>;
   messages?: Array<{ id: number; type: 'system' | 'user'; sender?: string; content: string; time: string }>;
@@ -125,10 +126,17 @@ export class TournamentController {
 
       if (lobby.status !== 'waiting') throw new ValidationError('Game already started');
 
-      lobby.status = 'active';
+      lobby.status = 'tour';
       lobby.phase = 1;
-      lobby.startTime = Date.now();
-      lobby.endTime = Date.now() + (5 * 60 * 1000); // 5 mins
+      // Pre-fill bots (Agent_*) as having already finished the tour
+      lobby.tourFinishedBy = lobby.players.filter(p => p.startsWith('Agent_'));
+
+      // Edge case: if all players somehow finished (e.g., only bots, or 1 player auto-finish)
+      if (lobby.tourFinishedBy.length >= lobby.players.length) {
+        lobby.status = 'active';
+        lobby.startTime = Date.now();
+        lobby.endTime = Date.now() + (5 * 60 * 1000);
+      }
 
       // Assign roles
       const shuffled = [...lobby.players].sort(() => Math.random() - 0.5);
@@ -258,6 +266,38 @@ export class TournamentController {
         task.completedBy.push(username);
         if (lobby.xp) {
           lobby.xp[username] = (lobby.xp[username] || 0) + task.rewardXP;
+        }
+      }
+
+      res.json({
+        success: true,
+        data: { lobby },
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async finishTour(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const id = req.params.id as string;
+      const { username } = req.body;
+
+      if (!username) throw new ValidationError('Username is required');
+
+      const lobby = lobbies.get(id);
+      if (!lobby) throw new NotFoundError('Lobby');
+
+      if (lobby.status === 'tour') {
+        if (!lobby.tourFinishedBy) lobby.tourFinishedBy = [];
+        if (!lobby.tourFinishedBy.includes(username)) {
+          lobby.tourFinishedBy.push(username);
+        }
+
+        if (lobby.tourFinishedBy.length >= lobby.players.length) {
+          lobby.status = 'active';
+          lobby.startTime = Date.now();
+          lobby.endTime = Date.now() + (5 * 60 * 1000); // 5 mins
         }
       }
 

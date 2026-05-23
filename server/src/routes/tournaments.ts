@@ -12,6 +12,7 @@ router.post('/lobby/:id/join', TournamentController.joinLobby);
 router.post('/lobby/:id/leave', TournamentController.leaveLobby);
 
 router.post('/lobby/:id/start', TournamentController.startGame);
+router.post('/lobby/:id/finishTour', TournamentController.finishTour);
 router.post('/lobby/:id/message', TournamentController.sendMessage);
 router.post('/lobby/:id/end', TournamentController.endGame);
 router.post('/lobby/:id/task', TournamentController.completeTask);

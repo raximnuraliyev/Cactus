@@ -44,7 +44,7 @@ export default function TournamentsView() {
           .then(res => {
             setActiveLobbyState(res.data.lobby);
             localStorage.setItem(LOCAL_STORAGE_LOBBY_KEY, JSON.stringify(res.data.lobby));
-            if (res.data.lobby.status === 'active') {
+            if (res.data.lobby.status === 'active' || res.data.lobby.status === 'tour') {
               navigate("/tournaments/arena");
             }
           })
@@ -195,7 +195,7 @@ export default function TournamentsView() {
 
           <div className="w-full grid grid-cols-1 gap-3 mt-6 relative z-10">
             <button 
-              disabled={activeLobby.players.length < 2 || activeLobby.status === 'active'}
+              disabled={activeLobby.players.length < 2 || activeLobby.status !== 'waiting'}
               onClick={async () => {
                 if (activeLobby.hostUsername === (user?.username || "Player") && activeLobby.status === 'waiting') {
                   try {

@@ -31,6 +31,21 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+const MOCK_EXTENSIONS = {
+  stats: {
+    awareness: 35,
+    intuition: 28,
+    speed: 42,
+    resilience: 15,
+    reputation: 68
+  },
+  achievements: [
+    { id: "first_blood", earnedAt: new Date().toISOString() },
+    { id: "sherlock", earnedAt: new Date().toISOString() },
+    { id: "boss", earnedAt: new Date().toISOString() }
+  ]
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isGuest, setIsGuest] = useState(false);
@@ -43,7 +58,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       getProfile()
         .then((res) => {
           // @ts-ignore - API returns { user, stats, rank } in data
-          setUser({ ...res.data.user, stats: res.data.stats });
+          setUser({ 
+            ...res.data.user, 
+            stats: { ...res.data.stats, ...MOCK_EXTENSIONS.stats },
+            achievements: MOCK_EXTENSIONS.achievements
+          });
         })
         .catch(() => {
           clearTokens();
@@ -73,7 +92,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setTokens(res.data.accessToken, res.data.refreshToken);
     const profileRes = await getProfile();
     // @ts-ignore
-    setUser({ ...profileRes.data.user, stats: profileRes.data.stats });
+    setUser({ 
+      ...profileRes.data.user, 
+      stats: { ...profileRes.data.stats, ...MOCK_EXTENSIONS.stats },
+      achievements: MOCK_EXTENSIONS.achievements 
+    });
     setIsGuest(false);
     localStorage.removeItem("rf_guest");
   }, []);
@@ -84,7 +107,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setTokens(res.data.accessToken, res.data.refreshToken);
       const profileRes = await getProfile();
       // @ts-ignore
-      setUser({ ...profileRes.data.user, stats: profileRes.data.stats });
+      setUser({ 
+        ...profileRes.data.user, 
+        stats: { ...profileRes.data.stats, ...MOCK_EXTENSIONS.stats },
+        achievements: MOCK_EXTENSIONS.achievements 
+      });
       setIsGuest(false);
       localStorage.removeItem("rf_guest");
     },
@@ -96,7 +123,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setTokens(res.data.accessToken, res.data.refreshToken);
     const profileRes = await getProfile();
     // @ts-ignore
-    setUser({ ...profileRes.data.user, stats: profileRes.data.stats });
+    setUser({ 
+      ...profileRes.data.user, 
+      stats: { ...profileRes.data.stats, ...MOCK_EXTENSIONS.stats },
+      achievements: MOCK_EXTENSIONS.achievements 
+    });
     setIsGuest(false);
     localStorage.removeItem("rf_guest");
   }, []);
@@ -117,8 +148,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         currentStreak: 0,
         bestStreak: 0,
         elo: 600,
-        placementGamesPlayed: 0
+        placementGamesPlayed: 0,
+        ...MOCK_EXTENSIONS.stats
       },
+      achievements: MOCK_EXTENSIONS.achievements
     };
     setUser(guestUser);
     localStorage.setItem("real_or_fake_user", JSON.stringify(guestUser));

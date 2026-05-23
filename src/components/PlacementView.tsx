@@ -15,7 +15,8 @@ import {
   ShieldAlert, 
   Play, 
   Award,
-  ChevronRight
+  ChevronRight,
+  SkipForward
 } from "lucide-react";
 
 export default function PlacementView() {
@@ -228,6 +229,14 @@ export default function PlacementView() {
         >
           <Play className="w-5 h-5" />
           {t("placement.commence") || "Commence Operation"}
+        </button>
+        
+        <button
+          onClick={() => updateUser({ stats: { ...user.stats, placementGamesPlayed: 5 } })}
+          className="w-full mt-2 py-3 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 rounded-xl font-bold uppercase tracking-wider flex items-center justify-center gap-2 text-red-400 active:scale-95 transition-all relative z-10"
+        >
+          <SkipForward className="w-5 h-5" />
+          Skip Placement (Dev)
         </button>
       </div>
 

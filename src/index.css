@@ -2,27 +2,33 @@
 
 /* ─── Theme Custom Properties ─────────────────── */
 :root {
-  --bg-primary: #12181B;
-  --bg-secondary: #1E2326;
-  --bg-card: rgba(255,255,255,0.05);
-  --bg-card-hover: rgba(255,255,255,0.08);
-  --bg-elevated: rgba(30,35,38,0.9);
-  --text-primary: #E2E8F0;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --accent: #4ADE80;
-  --accent-hover: #22C55E;
-  --accent-muted: rgba(74,222,128,0.15);
-  --accent-text: #12181B;
-  --border: rgba(255,255,255,0.08);
-  --border-accent: rgba(74,222,128,0.25);
+  /* Requested Variables */
+  --bg-main: #0D1117;       /* Dark cyber-blue/black for main background */
+  --bg-card: #161B22;       /* Slightly lighter dark for cards/containers */
+  --text-main: #FAFAFA;     /* High-contrast white for primary text/headings */
+  --text-muted: #8B949E;    /* Light gray for secondary text/labels (improves readability) */
+  --accent-neon: #00FF66;   /* Matrix green for primary actions/active tabs */
+  --accent-dark: #238636;   /* Darker green for borders/secondary accents */
+
+  /* Legacy Mapping */
+  --bg-primary: var(--bg-main);
+  --bg-secondary: var(--bg-card);
+  --bg-elevated: rgba(22, 27, 34, 0.95);
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-muted);
+  --accent: var(--accent-neon);
+  --accent-hover: #00e65c;
+  --accent-muted: rgba(0, 255, 102, 0.15);
+  --accent-text: #0D1117;
+  --border: rgba(139, 148, 158, 0.2);
+  --border-accent: var(--accent-dark);
   --danger: #F87171;
   --danger-muted: rgba(248,113,113,0.1);
   --warning: #FBBF24;
   --chat-incoming: rgba(255,255,255,0.06);
-  --chat-outgoing: #1B5E20;
-  --chat-outgoing-text: #E2E8F0;
-  --nav-bg: rgba(18,24,27,0.92);
+  --chat-outgoing: var(--accent-dark);
+  --chat-outgoing-text: var(--text-main);
+  --nav-bg: rgba(13, 17, 23, 0.95);
   --shadow-color: rgba(0,0,0,0.5);
   --spline-opacity: 0.15;
 }
@@ -91,15 +97,11 @@
   /* ─── Glassmorphism card ────────────────────── */
   .glass-card {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
   }
   .glass-card-accent {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-accent);
     border-radius: 1.25rem;
   }
@@ -187,6 +189,9 @@
 }
 
 @theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
   --color-green-300: #34d399;
   --color-green-400: #10b981;
   --color-green-450: #0c8f62;

@@ -14,6 +14,15 @@ export interface UserStats {
   bestStreak: number;
   elo: number;
   placementGamesPlayed: number;
+  
+  // Layer 2: Character Stats (0-50)
+  awareness: number;
+  intuition: number;
+  speed: number;
+  resilience: number;
+  
+  // Layer 3: City Reputation (0-100)
+  reputation: number;
 }
 
 export interface User {
@@ -22,6 +31,12 @@ export interface User {
   avatarUrl?: string;
   language: "en" | "ru" | "uz";
   stats: UserStats;
+  achievements?: Achievement[]; // Layer 7: Achievements
+}
+
+export interface Achievement {
+  id: string;
+  earnedAt?: string;
 }
 
 export interface Turn {
@@ -80,6 +95,22 @@ export interface Badge {
   totalRequired: number;
 }
 
+export interface MiniGameScenario {
+  id: string;
+  title: string;
+  category: string;
+  situation: string;
+  question: string;
+  timeLimit: number;
+  hint: string;
+  choices: {
+    text: string;
+    isCorrect: boolean;
+    awarenessReward: number;
+    resilienceReward: number;
+  }[];
+}
+
 export interface LeaderboardEntry {
   rank: number;
   username: string;
@@ -100,7 +131,8 @@ export interface TournamentLobby {
   hostUsername: string;
   players: string[];
   maxPlayers: number;
-  status: 'waiting' | 'active' | 'completed';
+  status: 'waiting' | 'tour' | 'active' | 'completed';
+  tourFinishedBy?: string[];
   phase?: number;
   roles?: Record<string, string>;
   messages?: Array<{ id: number; type: 'system' | 'user'; sender?: string; content: string; time: string }>;
