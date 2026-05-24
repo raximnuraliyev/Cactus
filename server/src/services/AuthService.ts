@@ -62,6 +62,32 @@ export class AuthService {
     };
   }
 
+  async guestLogin(): Promise<AuthTokens & { user: any }> {
+    const guestId = crypto.randomBytes(4).toString('hex');
+    const username = `Guest_${guestId}`;
+    const email = `guest_${guestId}@cactus.local`;
+    const passwordHash = await bcrypt.hash(crypto.randomBytes(16).toString('hex'), SALT_ROUNDS);
+
+    const user = await transaction(async (client) => {
+      const newUser = await this.userRepo.create(
+        {
+          username,
+          email,
+          password_hash: passwordHash,
+        },
+        client
+      );
+      await this.statsRepo.create(newUser.id, client);
+      return newUser;
+    });
+
+    const tokens = await this.generateTokens(user);
+    return {
+      ...tokens,
+      user: this.sanitizeUser(user),
+    };
+  }
+
   async login(input: LoginInput): Promise<AuthTokens & { user: any }> {
     const user = await this.userRepo.findByEmail(input.email);
     if (!user || !user.password_hash) {

@@ -102,7 +102,7 @@ export function startTelegramBot() {
       const url = `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/getUpdates?offset=${offset}&timeout=30`;
       const response = await fetch(url);
       if (response.ok) {
-        const data = await response.json();
+        const data: any = await response.json();
         if (data.ok && data.result.length > 0) {
           console.log('[Telegram Bot] Received updates:', JSON.stringify(data.result, null, 2));
           for (const update of data.result) {

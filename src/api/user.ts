@@ -10,6 +10,7 @@ export function updateProfile(fields: {
   language?: string;
   isPrivate?: boolean;
   notifyDaily?: boolean;
+  stats?: any;
 }) {
   return apiPatch<{ data: User }>("/api/v1/user/me", fields);
 }

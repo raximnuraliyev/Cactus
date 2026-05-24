@@ -1,7 +1,8 @@
-import 'dotenv/config';
+import './loadEnv.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import { getClient, closePool } from './config/database.js';
 
 const __filename = fileURLToPath(import.meta.url);

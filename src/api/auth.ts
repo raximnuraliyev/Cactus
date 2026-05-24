@@ -9,9 +9,13 @@ export function register(email: string, password: string, username: string) {
   });
 }
 
-export function login(email: string, password: string) {
+export const login = async (email: string, password: string) => {
   return apiPost<AuthResponse>("/api/v1/auth/login", { email, password });
-}
+};
+
+export const guestLogin = async () => {
+  return apiPost<AuthResponse>("/api/v1/auth/guest", {});
+};
 
 export function loginTelegram(initData: string) {
   return apiPost<AuthResponse>("/api/v1/auth/telegram", { initData });

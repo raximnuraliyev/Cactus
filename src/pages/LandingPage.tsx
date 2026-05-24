@@ -29,8 +29,8 @@ export default function LandingPage() {
     }
   }, [isTelegram, initData, loginTelegram, navigate]);
 
-  const handleGuestPlay = () => {
-    loginAsGuest();
+  const handleGuestPlay = async () => {
+    await loginAsGuest();
     navigate("/home");
   };
 

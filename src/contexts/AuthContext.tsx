@@ -63,6 +63,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             stats: { ...res.data.stats, ...MOCK_EXTENSIONS.stats },
             achievements: MOCK_EXTENSIONS.achievements
           });
+          const guestFlag = localStorage.getItem("rf_guest");
+          if (guestFlag === "true") {
+            setIsGuest(true);
+          }
         })
         .catch(() => {
           clearTokens();
@@ -72,16 +76,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Check if they were a guest
       const guestFlag = localStorage.getItem("rf_guest");
       if (guestFlag === "true") {
-        setIsGuest(true);
-        // Load a mock guest user from localStorage
-        const saved = localStorage.getItem("real_or_fake_user");
-        if (saved) {
-          try {
-            setUser(JSON.parse(saved));
-          } catch {
-            /* ignore */
-          }
-        }
+        // Legacy broken guest without a token -> logout automatically
+        localStorage.removeItem("rf_guest");
+        localStorage.removeItem("real_or_fake_user");
+        setIsGuest(false);
+        setUser(null);
       }
       setLoading(false);
     }
@@ -132,29 +131,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("rf_guest");
   }, []);
 
-  const loginAsGuest = useCallback(() => {
-    setIsGuest(true);
-    localStorage.setItem("rf_guest", "true");
-    const guestUser: User = {
-      id: "guest-" + Date.now(),
-      username: "Guest_Agent",
-      language: "en",
-      stats: {
-        totalXp: 0,
-        currentLevel: 1,
-        totalGames: 0,
-        correctVerdicts: 0,
-        accuracyPct: 0,
-        currentStreak: 0,
-        bestStreak: 0,
-        elo: 600,
-        placementGamesPlayed: 0,
-        ...MOCK_EXTENSIONS.stats
-      },
-      achievements: MOCK_EXTENSIONS.achievements
-    };
-    setUser(guestUser);
-    localStorage.setItem("real_or_fake_user", JSON.stringify(guestUser));
+  const loginAsGuest = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { guestLogin } = await import("../api/auth");
+      const res = await guestLogin();
+      setTokens(res.data.accessToken, res.data.refreshToken);
+      const profileRes = await getProfile();
+      // @ts-ignore
+      setUser({ 
+        ...profileRes.data.user, 
+        stats: { ...profileRes.data.stats, ...MOCK_EXTENSIONS.stats },
+        achievements: MOCK_EXTENSIONS.achievements 
+      });
+      setIsGuest(true);
+      localStorage.setItem("rf_guest", "true");
+    } catch (err) {
+      console.error("Failed to guest login", err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const logout = useCallback(() => {
@@ -167,13 +163,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("real_or_fake_user");
   }, []);
 
-  const updateUser = useCallback((fields: Partial<User>) => {
+  const updateUser = useCallback(async (fields: Partial<User>) => {
     setUser((prev) => {
       if (!prev) return prev;
       const updated = { ...prev, ...fields };
       localStorage.setItem("real_or_fake_user", JSON.stringify(updated));
       return updated;
     });
+
+    // If it's a real user (not guest), sync with backend
+    const guestFlag = localStorage.getItem("rf_guest");
+    const token = localStorage.getItem("rf_access_token");
+    if (guestFlag !== "true" && token) {
+      try {
+        const { updateProfile } = await import("../api/user");
+        await updateProfile({
+          username: fields.username,
+          language: fields.language,
+          stats: fields.stats
+        });
+      } catch (err) {
+        console.error("Failed to sync user updates to server", err);
+      }
+    }
   }, []);
 
   return (

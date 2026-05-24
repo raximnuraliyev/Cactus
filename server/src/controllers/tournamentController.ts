@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { NotFoundError, ValidationError } from '../middleware/errorHandler.js';
+import { AIService } from '../services/ai.service.js';
 
 export interface TournamentLobby {
   id: string;
@@ -106,7 +107,7 @@ export class TournamentController {
       if (lobby.players.length === 0) {
         lobbies.delete(id);
       } else if (lobby.hostUsername === username) {
-        lobby.hostUsername = lobby.players[0]; // assign new host
+        lobby.hostUsername = lobby.players[0]!; // assign new host
       }
 
       res.json({
@@ -136,6 +137,11 @@ export class TournamentController {
         lobby.status = 'active';
         lobby.startTime = Date.now();
         lobby.endTime = Date.now() + (5 * 60 * 1000);
+      }
+
+      // If solo player, add the AI Fraudster bot
+      if (lobby.players.length === 1) {
+        lobby.players.push('Agent_Fraudster');
       }
 
       // Assign roles
@@ -194,18 +200,39 @@ export class TournamentController {
         const uncompleted = lobby.tasks.filter(t => !t.completedBy.includes(username));
         if (uncompleted.length > 0) {
           const randomTask = uncompleted[Math.floor(Math.random() * uncompleted.length)];
-          randomTask.completedBy.push(username);
-          if (lobby.xp) {
-            lobby.xp[username] = (lobby.xp[username] || 0) + randomTask.rewardXP;
+          if (randomTask) {
+            randomTask.completedBy.push(username);
+            if (lobby.xp) {
+              lobby.xp[username] = (lobby.xp[username] || 0) + randomTask.rewardXP;
+            }
+            // Notify the room
+            lobby.messages?.push({
+              id: Date.now(),
+              type: 'system',
+              content: `System: ${username} achieved objective '${randomTask.title}'. (+${randomTask.rewardXP} XP)`,
+              time: time || '00:00'
+            });
           }
-          // Notify the room
-          lobby.messages?.push({
-            id: Date.now(),
-            type: 'system',
-            content: `AI System: ${username} achieved objective '${randomTask.title}'. (+${randomTask.rewardXP} XP)`,
-            time: time || '00:00'
-          });
         }
+      }
+
+      // If the lobby has Agent_Fraudster, trigger AI response asynchronously
+      if (lobby.players.includes('Agent_Fraudster')) {
+        // Run in background so we don't block the HTTP response
+        setTimeout(async () => {
+          try {
+            const aiResponse = await AIService.generateCommLinkReply(lobby.messages || []);
+            lobby.messages?.push({
+              id: Date.now(),
+              type: 'user',
+              sender: 'Agent_Fraudster',
+              content: aiResponse,
+              time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+            });
+          } catch (err) {
+            console.error('Failed to generate AI response for lobby', id, err);
+          }
+        }, 1000);
       }
 
       res.json({

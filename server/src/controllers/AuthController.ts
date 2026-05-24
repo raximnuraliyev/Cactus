@@ -22,6 +22,23 @@ export class AuthController {
     }
   }
 
+  static async guestLogin(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const result = await authService.guestLogin();
+
+      res.status(201).json({
+        success: true,
+        data: {
+          user: result.user,
+          accessToken: result.accessToken,
+          refreshToken: result.refreshToken,
+        },
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { email, password } = req.body;

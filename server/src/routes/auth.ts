@@ -36,6 +36,7 @@ const refreshSchema = z.object({
 router.post('/register', validate(registerSchema as any), AuthController.register);
 router.post('/telegram', validate(telegramSchema as any), AuthController.telegramLogin);
 router.post('/login', validate(loginSchema as any), AuthController.login);
+router.post('/guest', AuthController.guestLogin);
 router.post('/refresh', validate(refreshSchema as any), AuthController.refresh);
 router.post('/logout', authenticate, AuthController.logout);
 

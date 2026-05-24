@@ -1,0 +1,8 @@
+-- Add Elo and extended stats to user_stats table
+ALTER TABLE user_stats
+ADD COLUMN elo INTEGER DEFAULT 1200,
+ADD COLUMN awareness INTEGER DEFAULT 10,
+ADD COLUMN intuition INTEGER DEFAULT 10,
+ADD COLUMN speed INTEGER DEFAULT 10,
+ADD COLUMN resilience INTEGER DEFAULT 10,
+ADD COLUMN placement_games_played INTEGER DEFAULT 0;

@@ -11,7 +11,15 @@ const updateSchema = z.object({
     username: z.string().min(2).max(32).optional(),
     language: z.enum(['en', 'ru', 'uz']).optional(),
     isPrivate: z.boolean().optional(),
-    notifyDaily: z.boolean().optional()
+    notifyDaily: z.boolean().optional(),
+    stats: z.object({
+      elo: z.number().optional(),
+      awareness: z.number().optional(),
+      intuition: z.number().optional(),
+      speed: z.number().optional(),
+      resilience: z.number().optional(),
+      placement_games_played: z.number().optional()
+    }).optional()
   })
 });
 

@@ -12,6 +12,12 @@ export interface UserStats {
   best_streak: number;
   last_played_at: Date | null;
   updated_at: Date;
+  elo: number;
+  awareness: number;
+  intuition: number;
+  speed: number;
+  resilience: number;
+  placement_games_played: number;
 }
 
 export class UserStatsRepository {
@@ -110,5 +116,35 @@ export class UserStatsRepository {
       [hoursThreshold]
     );
     return result.rows;
+  }
+
+  async updateStats(userId: string, updates: Partial<UserStats>): Promise<UserStats | null> {
+    const fields: string[] = [];
+    const values: any[] = [userId];
+    let idx = 2;
+
+    const allowedFields = [
+      'total_xp', 'current_level', 'total_games', 'correct_verdicts',
+      'accuracy_pct', 'current_streak', 'best_streak',
+      'elo', 'awareness', 'intuition', 'speed', 'resilience', 'placement_games_played'
+    ];
+
+    for (const [key, value] of Object.entries(updates)) {
+      if (allowedFields.includes(key) && value !== undefined) {
+        fields.push(`${key} = $${idx}`);
+        values.push(value);
+        idx++;
+      }
+    }
+
+    if (fields.length === 0) return this.findByUserId(userId);
+
+    fields.push(`updated_at = now()`);
+
+    const result = await query<UserStats>(
+      `UPDATE user_stats SET ${fields.join(', ')} WHERE user_id = $1 RETURNING *`,
+      values
+    );
+    return result.rows[0] ?? null;
   }
 }

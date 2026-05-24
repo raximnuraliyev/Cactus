@@ -114,7 +114,7 @@ export default function ProfilePage() {
               {(user.username || 'U').slice(0, 2).toUpperCase()}
             </div>
             <div className="absolute -bottom-1 -right-1 t-accent-bg font-bold text-xs px-2 py-0.5 rounded-full font-mono">
-              Lv.{stats.currentLevel}
+              ELO {stats.elo || 1200}
             </div>
           </div>
 
@@ -176,9 +176,9 @@ export default function ProfilePage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
+          { icon: Shield, label: "ELO RATING", value: stats.elo || 1200 },
           { icon: Target, label: t("profile.total_games"), value: stats.totalGames },
           { icon: TrendingUp, label: t("profile.accuracy"), value: `${stats.accuracyPct}%` },
-          { icon: CheckCircle, label: t("profile.correct_verdicts"), value: stats.correctVerdicts },
           { icon: Flame, label: t("profile.best_streak"), value: stats.bestStreak },
         ].map((stat, idx) => (
           <div key={idx} className="glass-card p-5 text-center">

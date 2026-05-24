@@ -37,6 +37,12 @@ export class UserController {
                 currentStreak: stats.current_streak,
                 bestStreak: stats.best_streak,
                 lastPlayedAt: stats.last_played_at,
+                elo: stats.elo,
+                awareness: stats.awareness,
+                intuition: stats.intuition,
+                speed: stats.speed,
+                resilience: stats.resilience,
+                placementGamesPlayed: stats.placement_games_played,
               }
             : null,
           rank,
@@ -50,7 +56,7 @@ export class UserController {
   static async updateProfile(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const userId = req.user!.userId;
-      const { username, avatarUrl, language, isPrivate, notifyDaily } = req.body;
+      const { username, avatarUrl, language, isPrivate, notifyDaily, stats } = req.body;
 
       const updated = await userRepo.update(userId, {
         username,
@@ -61,12 +67,42 @@ export class UserController {
       });
 
       if (!updated) throw new NotFoundError('User');
+      
+      let updatedStats = null;
+      if (stats) {
+        updatedStats = await statsRepo.updateStats(userId, {
+          elo: stats.elo,
+          awareness: stats.awareness,
+          intuition: stats.intuition,
+          speed: stats.speed,
+          resilience: stats.resilience,
+          placement_games_played: stats.placement_games_played
+        });
+      }
 
       const { password_hash, deleted_at, ...safeUser } = updated;
 
       res.json({
         success: true,
-        data: { user: safeUser },
+        data: { 
+          user: safeUser,
+          stats: updatedStats ? {
+            totalXp: updatedStats.total_xp,
+            currentLevel: updatedStats.current_level,
+            totalGames: updatedStats.total_games,
+            correctVerdicts: updatedStats.correct_verdicts,
+            accuracyPct: Number(updatedStats.accuracy_pct),
+            currentStreak: updatedStats.current_streak,
+            bestStreak: updatedStats.best_streak,
+            lastPlayedAt: updatedStats.last_played_at,
+            elo: updatedStats.elo,
+            awareness: updatedStats.awareness,
+            intuition: updatedStats.intuition,
+            speed: updatedStats.speed,
+            resilience: updatedStats.resilience,
+            placementGamesPlayed: updatedStats.placement_games_played,
+          } : undefined
+        },
       });
     } catch (err) {
       next(err);
