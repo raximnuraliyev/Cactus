@@ -128,10 +128,10 @@ export default function LeaderboardView() {
                 return (
                   <div 
                     key={idx} 
-                    className={`grid grid-cols-12 px-6 py-5 items-center transition-colors ${
+                    className={`grid grid-cols-12 px-6 py-5 items-center transition-colors border-b-2 ${
                       isMe 
-                        ? "t-accent-muted border-y t-border-accent" 
-                        : "hover:t-bg-secondary"
+                        ? "bg-[#1EB863] text-black border-t-4 border-b-[#168a4a] border-t-[#168a4a] z-10 relative" 
+                        : "bg-white dark:bg-[#13191E] border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900"
                     }`}
                   >
                     {/* Rank column */}
@@ -141,35 +141,35 @@ export default function LeaderboardView() {
                           <Crown className={`w-5 h-5 ${
                             player.rank === 1 ? "text-yellow-400" : player.rank === 2 ? "text-slate-300" : "text-amber-600"
                           }`} />
-                          <span className="t-text font-bold">{player.rank}</span>
+                          <span className={`font-extrabold ${isMe ? 'text-black' : 'text-black dark:text-white'}`}>{player.rank}</span>
                         </div>
                       ) : (
-                        <span className="t-text-secondary font-semibold">{player.rank}</span>
+                        <span className={`font-bold ${isMe ? 'text-black/80' : 'text-gray-500 dark:text-gray-400'}`}>{player.rank}</span>
                       )}
                     </div>
 
                     {/* Name avatar column */}
                     <div className="col-span-5 flex items-center space-x-4 truncate">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-mono font-bold border ${
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-mono font-extrabold border-2 ${
                         isMe 
-                          ? "t-bg-secondary t-border-accent t-text-accent shadow-[0_0_10px_var(--accent-muted)]" 
-                          : "t-bg-secondary t-border t-text-secondary"
+                          ? "bg-black text-[#1EB863] border-black shadow-sm" 
+                          : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
                       }`}>
                         {(player.username || 'U').slice(0, 1).toUpperCase()}
                       </div>
                       <div>
-                        <span className={`text-base block truncate ${
-                          isMe ? "t-text-accent font-bold" : "t-text"
+                        <span className={`text-base block truncate font-bold ${
+                          isMe ? "text-black" : "text-black dark:text-white"
                         }`}>
                           {player.username}
                           {isMe && (
-                            <span className="text-[10px] font-mono uppercase t-accent-muted border t-border-accent t-text-accent px-2 py-0.5 rounded ml-2 font-bold">
+                            <span className="text-[10px] font-mono uppercase bg-black text-[#1EB863] px-2 py-0.5 rounded ml-2 font-bold">
                               {t("leaderboard.me_badge")}
                             </span>
                           )}
                         </span>
-                        <span className="text-xs t-text-secondary flex items-center gap-1.5 font-mono mt-0.5">
-                          <TrendingUp className="w-3.5 h-3.5 t-text-accent" />
+                        <span className={`text-xs flex items-center gap-1.5 font-mono mt-0.5 font-semibold ${isMe ? 'text-black/70' : 'text-gray-500 dark:text-gray-400'}`}>
+                          <TrendingUp className={`w-3.5 h-3.5 ${isMe ? 'text-black' : 'text-[#1EB863]'}`} />
                           {player.accuracy}%
                         </span>
                       </div>
@@ -177,17 +177,19 @@ export default function LeaderboardView() {
 
                     {/* Level badge column */}
                     <div className="col-span-2 text-center font-mono text-sm">
-                      <span className="t-bg-secondary px-3 py-1.5 border t-border rounded-lg t-text-secondary font-semibold">
+                      <span className={`px-3 py-1.5 border-2 rounded-lg font-bold ${
+                        isMe ? 'bg-black/10 border-black/20 text-black' : 'bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'
+                      }`}>
                         Lvl.{player.level}
                       </span>
                     </div>
 
                     {/* Score column */}
-                    <div className="col-span-3 text-right font-mono text-base font-bold">
-                      <span className={isMe ? "t-text-accent" : "t-text"}>
+                    <div className={`col-span-3 text-right font-mono text-base font-extrabold ${isMe ? 'text-black' : 'text-[#168a4a] dark:text-[#1EB863]'}`}>
+                      <span>
                         {(player.score || 0).toLocaleString()}
                       </span>
-                      <span className="text-xs t-text-muted font-mono ml-1.5 font-normal">XP</span>
+                      <span className={`text-xs font-mono ml-1.5 font-bold ${isMe ? 'text-black/80' : 'text-green-700 dark:text-green-500'}`}>XP</span>
                     </div>
                   </div>
                 );

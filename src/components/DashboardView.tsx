@@ -254,8 +254,8 @@ export default function DashboardView() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Daily Challenge */}
           <HighlightBlock isActive={activeOverlayId === 'challenge'} tooltipNode={renderTooltip('challenge')} className="h-full flex-1">
-            <div className="relative overflow-hidden p-6 glass-card-accent rounded-xl shadow-[0_0_20px_var(--accent-muted)] h-full flex flex-col justify-between border t-border-accent">
-              <div className="absolute top-0 right-0 p-3 bg-red-500/10 border-l border-b border-red-500/20 text-red-400 font-mono text-xs font-bold uppercase tracking-widest rounded-bl-lg animate-pulse">
+            <div className="relative overflow-hidden p-6 glass-card-accent rounded-xl h-full flex flex-col justify-between border-2 border-[#1EB863]">
+              <div className="absolute top-0 right-0 p-3 bg-red-500/10 border-l-2 border-b-2 border-red-500/50 text-red-400 font-mono text-xs font-bold uppercase tracking-widest rounded-bl-lg animate-pulse">
                 Critical Dispatch
               </div>
               <div className="flex items-start space-x-5">
@@ -281,15 +281,11 @@ export default function DashboardView() {
                 <button
                   onClick={handleStartDailyChallenge}
                   disabled={completedDaily || dailyLoading}
-                  className={`flex-1 flex items-center justify-center gap-2 rounded-xl py-4 text-base font-bold transition-all shadow-[0_0_20px_var(--accent-muted)] ${
-                    completedDaily
-                      ? "t-bg-secondary t-border t-text-muted cursor-not-allowed shadow-none"
-                      : "t-accent-bg border t-border-accent active:scale-95 hover:brightness-110 text-[#0B0F12]"
-                  }`}
+                  className={`flex-1 flex items-center justify-center gap-2 w-full ${completedDaily ? "btn-ghost opacity-50 cursor-not-allowed" : "btn-primary"} py-4`}
                 >
                   {completedDaily ? (
                     <>
-                      <Award className="w-5 h-5 t-text-muted" />
+                      <Award className="w-5 h-5" />
                       {t("daily_done")}
                     </>
                   ) : (
@@ -323,7 +319,7 @@ export default function DashboardView() {
               </div>
               
               <div className="mt-5 flex gap-3">
-                 <button className="flex-1 flex items-center justify-center gap-2 rounded-xl py-4 text-base font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] bg-emerald-500 text-[#0B0F12] border border-emerald-400 hover:brightness-110 active:scale-95">
+                 <button className="flex-1 flex items-center justify-center gap-2 btn-ghost border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 py-4 uppercase">
                     <PhoneCall className="w-5 h-5 fill-current" />
                     START VOICE MISSION
                  </button>
@@ -409,7 +405,7 @@ export default function DashboardView() {
 
                   <button 
                     onClick={() => setShowGameModal(true)}
-                    className="w-full mt-4 py-2 bg-gradient-to-r from-green-500/10 to-transparent hover:from-green-500/20 border border-green-500/30 hover:border-green-500/50 rounded-lg text-green-400 font-mono font-bold tracking-widest text-xs uppercase transition-all flex items-center justify-center gap-2"
+                    className="w-full mt-4 py-3 btn-ghost uppercase tracking-widest text-xs flex items-center justify-center gap-2"
                   >
                     <Terminal className="w-3 h-3" />
                     Train Stats
@@ -551,7 +547,8 @@ function NeuralThreatDiagnostic() {
   }, []);
 
   return (
-    <div className="p-4 space-y-4 relative overflow-hidden bg-black/20 rounded-xl border t-border mt-4">
+    <div className="p-4 space-y-4 relative overflow-hidden bg-gray-100 dark:bg-black/20 rounded-xl border t-border mt-4">
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(0,255,0,0.8)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {nodes.map((node) => (
           <div
@@ -640,7 +637,7 @@ function ReputationBlock() {
         <h2 className={`text-xl sm:text-2xl font-bold uppercase tracking-wide ${color}`}>
           {t(`dash_rep_tier_${tier}`)}
         </h2>
-        <div className="mt-3 h-2 w-full max-w-md bg-black/40 rounded-full overflow-hidden border border-white/10 mx-auto sm:mx-0">
+        <div className="mt-3 h-2 w-full max-w-md bg-gray-200 dark:bg-black/40 rounded-full overflow-hidden border border-gray-300 dark:border-white/10 mx-auto sm:mx-0">
           <div 
             className={`h-full rounded-full ${color.replace('text-', 'bg-')} transition-all duration-1000`} 
             style={{ width: `${rep}%` }}
@@ -720,7 +717,7 @@ function CharacterStatsBlock() {
                 </div>
                 <span className={`font-mono font-black text-[10px] ${item.color}`}>{item.val}/50</span>
               </div>
-              <div className="h-1 w-full bg-black/40 rounded-full overflow-hidden mt-1.5">
+              <div className="h-1 w-full bg-gray-200 dark:bg-black/40 rounded-full overflow-hidden mt-1.5">
                 <div 
                   className={`h-full ${item.bg} transition-all duration-1000 group-hover:brightness-125`}
                   style={{ width: `${(item.val / 50) * 100}%` }}
@@ -764,6 +761,8 @@ function AchievementsBlock() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {achievements.map(achv => {
           const isUnlocked = unlockedIds.includes(achv.id);
+          const Icon = achv.rarity === 'legendary' ? Crown : achv.rarity === 'epic' ? Star : Award;
+          
           return (
             <div 
               key={achv.id} 
@@ -778,11 +777,9 @@ function AchievementsBlock() {
               )}
               
               <div className="flex gap-3 items-center">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${isUnlocked ? achv.bg + ' ' + achv.color : 'bg-black/40 text-gray-500'}`}>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${isUnlocked ? achv.bg + ' ' + achv.color : 'bg-gray-100 dark:bg-black/40 text-gray-500'}`}>
                   {isUnlocked ? (
-                    achv.rarity === 'legendary' ? <Crown className="w-5 h-5" /> :
-                    achv.rarity === 'epic' ? <Star className="w-5 h-5" /> :
-                    <Award className="w-5 h-5" />
+                    <Icon className="w-5 h-5" />
                   ) : (
                     <Lock className="w-5 h-5" />
                   )}

@@ -57,13 +57,13 @@ export default function LandingPage() {
         <span className="text-[10px] font-mono border t-border-accent t-text-accent px-3 py-1 rounded-full uppercase tracking-widest font-bold t-accent-muted">
           MOBILE MINI APP AGENT TERMINAL
         </span>
-        <h2 className="text-4xl md:text-5xl font-light tracking-tight t-text leading-tight">
+        <h2 className="text-5xl font-extrabold tracking-tight t-text leading-tight">
           Can you spot the{" "}
-          <span className="t-text-accent font-semibold font-mono">
+          <span className="text-[#1EB863]">
             Impostor?
           </span>
         </h2>
-        <p className="text-sm t-text-secondary leading-relaxed max-w-sm mx-auto">
+        <p className="text-lg font-semibold t-text-secondary leading-relaxed max-w-sm mx-auto">
           {t("splash_sub")}
         </p>
       </div>
@@ -71,31 +71,31 @@ export default function LandingPage() {
       <div className="w-full space-y-3 px-4 pt-4">
         <button
           onClick={handleGuestPlay}
-          className="w-full t-accent-bg rounded-full py-4 text-base font-semibold tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(74,222,128,0.25)] active:scale-98 relative group overflow-hidden"
+          className="w-full btn-primary py-4 uppercase"
         >
-          <span className="relative z-10">{t("guest_play")}</span>
+          {t("guest_play")}
         </button>
 
-        <div className="flex justify-center items-center py-2 t-text-muted text-[10px] font-mono tracking-widest uppercase">
+        <div className="flex justify-center items-center py-2 t-text-muted text-[10px] font-bold tracking-widest uppercase">
           <span>{t("or_separator")}</span>
         </div>
 
         <div className="flex gap-2">
           <button
             onClick={() => navigate("/auth/register")}
-            className="flex-1 t-bg border t-border hover:t-border-accent t-text rounded-full py-3 text-sm font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-98 shadow-sm"
+            className="flex-1 btn-ghost py-3 uppercase flex items-center justify-center"
           >
             {t("register")}
           </button>
           <button
             onClick={() => navigate("/auth/login")}
-            className="flex-1 t-bg border t-border hover:t-border-accent t-text rounded-full py-3 text-sm font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all active:scale-98 shadow-sm"
+            className="flex-1 btn-ghost py-3 uppercase flex items-center justify-center"
           >
             {t("login")}
           </button>
           <button
             onClick={handleToggleLang}
-            className="flex items-center gap-2 px-5 py-3 t-bg-secondary border t-border rounded-full t-text-secondary hover:t-text text-xs font-mono font-bold uppercase transition-all shadow-sm"
+            className="flex items-center justify-center gap-2 px-5 py-3 btn-ghost uppercase"
           >
             <Globe className="w-4 h-4" />
             <span>{lang === "en" ? "ENG" : lang === "ru" ? "RUS" : "UZB"}</span>

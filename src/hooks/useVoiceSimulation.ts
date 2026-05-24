@@ -35,7 +35,12 @@ export const voiceLocalizationBundle = {
     verdictBtn: "🚨 BU MOSHENNIK! (HUKM)",
     success: "MUVAFFAQIYAT! XAVFSIZ",
     breach: "MA'LUMOTLAR SIZIQ CHIQDI!",
-    retry: "Yana urunib ko'rish"
+    retry: "Yana urunib ko'rish",
+    dashboard: "Boshqaruv paneli",
+    final_metrics: "Yakuniy ko'rsatkichlar",
+    live_transcript: "Jonli transkripsiya",
+    you: "Siz",
+    davron: "Davron aka (Boshliq)"
   },
   ru: {
     title: "СИМУЛЯТОР КИБЕРБЕЗОПАСНОСТИ",
@@ -49,7 +54,12 @@ export const voiceLocalizationBundle = {
     verdictBtn: "🚨 ЭТО МОШЕННИК! (ВЕРДИКТ)",
     success: "УСПЕХ! БЕЗОПАСНО",
     breach: "УТЕЧКА ДАННЫХ!",
-    retry: "Попробовать снова"
+    retry: "Попробовать снова",
+    dashboard: "Панель управления",
+    final_metrics: "Финальные метрики",
+    live_transcript: "Живая расшифровка",
+    you: "Вы",
+    davron: "Даврон ака (Босс)"
   },
   en: {
     title: "CYBERSECURITY SIMULATOR",
@@ -63,7 +73,12 @@ export const voiceLocalizationBundle = {
     verdictBtn: "🚨 IT'S A SCAMMER! (VERDICT)",
     success: "SUCCESS! SECURE",
     breach: "CRITICAL BREACH DETECTED!",
-    retry: "Retry Simulation"
+    retry: "Retry Simulation",
+    dashboard: "Dashboard",
+    final_metrics: "Final Metrics",
+    live_transcript: "Live Transcript",
+    you: "You",
+    davron: "Davron aka (Boss)"
   }
 };
 

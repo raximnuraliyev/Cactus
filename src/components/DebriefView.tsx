@@ -111,27 +111,29 @@ export default function DebriefView() {
     <div className="space-y-6 max-w-2xl mx-auto py-2 animate-fade-in pb-20">
       
       {/* Animated Verdict Title Banner */}
-      <div className={`relative overflow-hidden p-8 rounded-2xl border text-center relative ${
+      <div className={`relative overflow-hidden p-8 rounded-2xl text-center relative ${
         result.correct 
-          ? "border-green-500/30 bg-green-500/5 shadow-[0_0_20px_rgba(0,255,0,0.05)]" 
-          : "border-red-500/30 bg-red-500/5 shadow-[0_0_20px_rgba(239,68,68,0.05)]"
+          ? "bg-[#1EB863] text-black border-b-4 border-[#168a4a]" 
+          : "bg-red-500 text-white border-b-4 border-red-700"
       }`}>
-        <SpotlightHover className={result.correct ? "from-green-500/10" : "from-red-500/10"} />
+        <SpotlightHover className={result.correct ? "from-green-200/50" : "from-red-200/50"} />
         
         <div className="relative z-10 flex flex-col items-center justify-center space-y-3">
           {result.correct ? (
-            <CheckCircle className="w-16 h-16 text-green-400 animate-bounce" />
+            <CheckCircle className="w-16 h-16 text-black animate-bounce" />
           ) : (
-            <XCircle className="w-16 h-16 text-red-400 animate-shake" />
+            <XCircle className="w-16 h-16 text-white animate-shake" />
           )}
 
-          <h2 className={`text-xl md:text-2xl font-light tracking-wide ${
-            result.correct ? "text-green-400" : "text-red-400"
+          <h2 className={`text-3xl font-extrabold tracking-wide ${
+            result.correct ? "text-black" : "text-white"
           }`}>
             {getTranslatedTitle()}
           </h2>
 
-          <div className="flex items-center gap-1.5 border t-border t-bg-secondary px-4 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest t-text-secondary">
+          <div className={`flex items-center gap-1.5 border-2 px-4 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest ${
+            result.correct ? "border-black/20 text-black" : "border-white/20 text-white"
+          }`}>
             CASE RATING: {result.correct ? "GRADE S" : "GRADE F"}
           </div>
         </div>
@@ -139,18 +141,18 @@ export default function DebriefView() {
 
       {/* Ticker score transfer card */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="rounded-2xl p-5 t-bg-card t-border flex flex-col items-center justify-center text-center glass-card">
-          <Award className="w-5 h-5 t-text-accent mb-1 animate-pulse" />
+        <div className="rounded-2xl p-5 bg-white dark:bg-[#13191E] border-2 border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center text-center">
+          <Award className="w-5 h-5 text-[#1EB863] mb-1 animate-pulse" />
           <span className="text-[10px] font-mono t-text-secondary uppercase tracking-widest">{t("debrief_page.xp_gained")}</span>
-          <span className="text-3xl font-bold t-text font-mono mt-1">
-            +{animatedScore} <span className="text-xs t-text-accent">XP</span>
+          <span className="text-3xl font-extrabold text-[#1EB863] font-mono mt-1 drop-shadow-sm">
+            +{animatedScore} <span className="text-xs text-[#1EB863]">XP</span>
           </span>
         </div>
 
-        <div className="rounded-2xl p-5 t-bg-card t-border flex flex-col items-center justify-center text-center glass-card">
+        <div className="rounded-2xl p-5 bg-white dark:bg-[#13191E] border-2 border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center text-center">
           <Flame className="w-5 h-5 text-orange-500 mb-1 fill-orange-500" />
           <span className="text-[10px] font-mono t-text-secondary uppercase tracking-widest">Accuracy Rating</span>
-          <span className="text-3xl font-bold t-text font-mono mt-1">
+          <span className="text-3xl font-extrabold t-text font-mono mt-1 drop-shadow-sm">
             {result.correct ? 100 : 0}%
           </span>
         </div>
@@ -215,23 +217,23 @@ export default function DebriefView() {
             return (
               <div 
                 key={idx} 
-                className={`p-3.5 border rounded-xl flex items-start gap-3 text-xs leading-relaxed transition-all ${
+                className={`p-3.5 border-2 rounded-xl flex items-start gap-3 text-sm font-bold transition-all ${
                   wasFound 
-                    ? "t-border-accent t-accent-muted t-text" 
-                    : "border-red-500/20 bg-red-500/5 t-text-secondary"
+                    ? "bg-[#1EB863]/20 text-black dark:text-white border-[#1EB863]" 
+                    : "bg-red-100 dark:bg-red-950/40 text-red-800 dark:text-red-400 border-red-300 dark:border-red-500/50"
                 }`}
               >
                 <div className="shrink-0 mt-0.5">
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-mono font-bold ${
                     wasFound 
-                      ? "t-accent-bg" 
-                      : "bg-red-500/20 text-red-400 border border-red-400/30"
+                      ? "bg-[#1EB863] text-black" 
+                      : "bg-red-500 text-white"
                   }`}>
                     {wasFound ? "✓" : "✗"}
                   </span>
                 </div>
                 <div>
-                  <span className={`text-[10px] font-mono font-semibold block uppercase mb-1 ${wasFound ? "t-text-accent" : "text-red-400"}`}>
+                  <span className={`text-[10px] font-mono font-extrabold block uppercase mb-1 ${wasFound ? "text-green-700 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
                     {wasFound ? "Evidence Uncovered" : "Overlooked Signal"}
                   </span>
                   <p>{clue}</p>
@@ -246,7 +248,7 @@ export default function DebriefView() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <button
           onClick={handlePlayAgain}
-          className="flex items-center justify-center gap-2 t-accent-bg hover:brightness-110 rounded-full py-4 font-semibold text-xs tracking-wider uppercase active:scale-98 transition-all"
+          className="flex items-center justify-center gap-2 btn-primary py-4 uppercase"
         >
           <Play className="w-4 h-4 fill-current" />
           {t("debrief_page.play_again")}

@@ -71,39 +71,39 @@ export default function BadgeView() {
             return (
               <div 
                 key={badge.id}
-                className={`relative overflow-hidden p-6 glass-card transition-all ${
+                className={`relative overflow-hidden p-6 rounded-2xl transition-all ${
                   isComplete
-                    ? "t-border-accent t-accent-muted shadow-[0_0_15px_var(--accent-muted)]"
-                    : "t-border opacity-70"
+                    ? "bg-white dark:bg-[#13191E] border-2 border-[#1EB863] shadow-sm"
+                    : "grayscale bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 text-gray-400"
                 }`}
               >
                 <SpotlightHover className={isComplete ? "t-accent-muted opacity-50" : "opacity-0"} />
 
                 <div className="flex items-start space-x-4 relative z-10">
                   {/* Visual badge round container */}
-                  <div className={`p-4 rounded-2xl border flex items-center justify-center transition-all ${
+                  <div className={`p-4 rounded-2xl border-2 flex items-center justify-center transition-all ${
                     isComplete
-                      ? "t-bg-secondary t-border-accent t-text-accent shadow-[0_0_15px_var(--accent-muted)]"
-                      : "t-bg-secondary t-border t-text-muted"
+                      ? "bg-[#1EB863]/20 border-[#1EB863] text-[#1EB863]"
+                      : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400"
                   }`}>
                     {renderBadgeIcon(badge.icon, isComplete)}
                   </div>
 
                   <div className="flex-1 space-y-1.5">
                     <div className="flex justify-between items-start">
-                      <h4 className={`text-base font-semibold ${isComplete ? "t-text" : "t-text-muted"}`}>
+                      <h4 className={`text-base font-bold ${isComplete ? "text-black dark:text-white" : "text-gray-400"}`}>
                         {t(`badges.${badge.name.replace(/\s+/g, '_').toLowerCase()}.name`) || badge.name}
                       </h4>
-                      <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded border ${
+                      <span className={`text-[9px] font-mono px-2 py-1 rounded font-bold uppercase ${
                         isComplete 
-                          ? "t-text-accent t-border-accent t-accent-muted font-bold animate-pulse"
-                          : "t-text-muted t-border"
+                          ? "bg-[#1EB863]/20 text-[#1EB863] animate-pulse"
+                          : "bg-gray-200 dark:bg-gray-800 text-gray-500"
                       }`}>
                         {isComplete ? t("badges_page.unlocked") : t("badges_page.locked")}
                       </span>
                     </div>
 
-                    <p className={`text-xs ${isComplete ? "t-text-secondary" : "t-text-muted"} font-sans leading-relaxed`}>
+                    <p className={`text-xs ${isComplete ? "text-gray-600 dark:text-gray-300" : "text-gray-400"} font-semibold leading-relaxed`}>
                       {t(`badges.${badge.name.replace(/\s+/g, '_').toLowerCase()}.desc`) || badge.description}
                     </p>
 
@@ -113,9 +113,9 @@ export default function BadgeView() {
                         <span>{t("badges_page.calibration")}</span>
                         <span>{badge.progress} / {badge.totalRequired}</span>
                       </div>
-                      <div className="h-1 t-bg-secondary rounded-full overflow-hidden border t-border">
+                      <div className="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                         <div 
-                          className={`h-full ${isComplete ? "t-accent-bg shadow-[0_0_8px_var(--accent-muted)]" : "t-bg-card"}`}
+                          className={`h-full ${isComplete ? "bg-[#1EB863]" : "bg-gray-400"}`}
                           style={{ width: `${(badge.progress / badge.totalRequired) * 100}%` }}
                         ></div>
                       </div>

@@ -290,7 +290,7 @@ export default function TournamentArenaView() {
   const sortedPlayers = [...lobby.players].sort((a, b) => (lobby.xp?.[b] || 0) - (lobby.xp?.[a] || 0));
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col p-2 sm:p-4 t-bg text-white font-sans pointer-events-auto">
+    <div className="fixed inset-0 z-50 flex flex-col p-2 sm:p-4 t-bg text-black dark:text-white font-sans pointer-events-auto">
       
       {/* Top Warning Bar & Nav */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent shadow-[0_0_15px_rgba(239,68,68,0.5)] z-0 animate-pulse" />
@@ -298,7 +298,7 @@ export default function TournamentArenaView() {
       {/* Global Dark Overlay for Tour/Focus */}
       {(isOverlayActive || lobby.status === 'tour') && (
         <div 
-          className="fixed inset-0 z-[40] bg-black/60 backdrop-blur-md transition-all flex flex-col items-center justify-center pointer-events-auto" 
+          className="fixed inset-0 z-[40] bg-black/50 dark:bg-black/60 backdrop-blur-md transition-all flex flex-col items-center justify-center pointer-events-auto" 
           onClick={() => { if(focusedSection) setFocusedSection(null) }} 
         >
           {lobby.status === 'tour' && tourStep === null && !focusedSection && (
@@ -317,13 +317,13 @@ export default function TournamentArenaView() {
         {/* DASHBOARD COLUMN */}
         <div className="lg:col-span-3 flex flex-col gap-4 relative">
           
-          <div className="flex justify-between items-center bg-black/40 border t-border rounded-xl px-3 py-2 backdrop-blur-md relative z-20">
+          <div className="flex justify-between items-center bg-gray-100/80 dark:bg-black/40 border t-border rounded-xl px-3 py-2 backdrop-blur-md relative z-20">
             {/* Moved Nav to Top-Left inside Dashboard column to avoid Leave button */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 t-text font-mono text-sm tracking-widest uppercase">
                 {theme === "dark" ? <Moon className="w-4 h-4 text-indigo-400" /> : <Sun className="w-4 h-4 text-orange-400" />}
               </div>
-              <div className="w-px h-4 bg-gray-700" />
+              <div className="w-px h-4 bg-gray-300 dark:bg-gray-700" />
               <div className="relative group">
                 <button className="flex items-center gap-1 hover:bg-white/10 rounded-md transition-colors text-xs font-bold t-text uppercase">
                   <Globe className="w-3.5 h-3.5" />
@@ -331,9 +331,9 @@ export default function TournamentArenaView() {
                   <ChevronDown className="w-3 h-3 opacity-50" />
                 </button>
                 <div className="absolute top-full left-0 mt-2 w-32 bg-gray-900 border border-green-500/30 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col overflow-hidden z-[100]">
-                  <button onClick={() => setLanguage('en')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'en' ? 'text-green-400' : 'text-gray-300'}`}>EN - English</button>
-                  <button onClick={() => setLanguage('ru')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'ru' ? 'text-green-400' : 'text-gray-300'}`}>RU - Русский</button>
-                  <button onClick={() => setLanguage('uz')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'uz' ? 'text-green-400' : 'text-gray-300'}`}>UZ - O'zbek</button>
+                  <button onClick={() => setLanguage('en')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'en' ? 'text-green-400' : 'text-gray-700 dark:text-gray-300'}`}>EN - English</button>
+                  <button onClick={() => setLanguage('ru')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'ru' ? 'text-green-400' : 'text-gray-700 dark:text-gray-300'}`}>RU - Русский</button>
+                  <button onClick={() => setLanguage('uz')} className={`px-3 py-2 text-xs font-bold text-left hover:bg-green-500/20 ${language === 'uz' ? 'text-green-400' : 'text-gray-700 dark:text-gray-300'}`}>UZ - O'zbek</button>
                 </div>
               </div>
             </div>
@@ -352,8 +352,8 @@ export default function TournamentArenaView() {
               isFraudster ? 'bg-red-950/40 border-red-500/50 shadow-red-500/10' : 'bg-blue-950/40 border-blue-500/50 shadow-blue-500/10'
             }`}>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-400">{t("arena.identity") || "Your Hidden Identity"}</span>
-                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("identity"); }} className="p-1 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white">
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">{t("arena.identity") || "Your Hidden Identity"}</span>
+                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("identity"); }} className="p-1 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white">
                   <Info className="w-4 h-4" />
                 </button>
               </div>
@@ -367,7 +367,7 @@ export default function TournamentArenaView() {
                   </h2>
                 </div>
               </div>
-              <p className="mt-3 text-sm text-gray-300 font-mono leading-relaxed bg-black/40 p-3 rounded-xl border border-white/5">
+              <p className="mt-3 text-sm text-gray-700 dark:text-gray-300 font-mono leading-relaxed bg-gray-100 dark:bg-black/40 p-3 rounded-xl border border-gray-200 dark:border-white/5">
                 {isFraudster 
                   ? (t("arena.fraudster_obj") || "Objective: Frame another player or escape undetected. Sabotage the investigation.")
                   : (t("arena.bank_obj") || "Objective: Identify the fraudster and secure the transaction logs.")}
@@ -376,16 +376,16 @@ export default function TournamentArenaView() {
           </HighlightBlock>
 
           <HighlightBlock isActive={activeOverlayId === "objectives"} tooltipNode={renderTooltip("objectives")} className="flex-1 min-h-[250px]">
-            <div className="glass-card border t-border rounded-2xl flex flex-col h-full shadow-xl bg-black/20 backdrop-blur-md relative overflow-hidden">
+            <div className="glass-card border t-border rounded-2xl flex flex-col h-full shadow-xl bg-gray-50/80 dark:bg-black/20 backdrop-blur-md relative overflow-hidden">
               {/* Animated background gradient */}
               <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
               
-              <div className="p-4 border-b t-border bg-black/40 flex items-center justify-between z-10 relative">
-                <div className="flex items-center gap-2 text-gray-300 font-mono text-sm tracking-widest uppercase">
+              <div className="p-4 border-b t-border bg-gray-100/80 dark:bg-black/40 flex items-center justify-between z-10 relative">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 font-mono text-sm tracking-widest uppercase">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   {t("arena.objectives") || "Active Objectives"}
                 </div>
-                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("objectives"); }} className="p-1 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white">
+                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("objectives"); }} className="p-1 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white">
                   <Info className="w-4 h-4" />
                 </button>
               </div>
@@ -396,7 +396,7 @@ export default function TournamentArenaView() {
                     className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-300 text-left w-full border ${
                       task.completedBy.includes(user?.username || "")
                         ? 'bg-green-500/10 border-green-500/30 shadow-[inset_0_0_20px_rgba(74,222,128,0.1)]' 
-                        : 'bg-black/40 border-white/10'
+                        : 'bg-gray-100 dark:bg-black/40 border-gray-200 dark:border-white/10'
                     }`}
                   >
                     <div className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border shrink-0 transition-colors ${
@@ -405,7 +405,7 @@ export default function TournamentArenaView() {
                       {task.completedBy.includes(user?.username || "") && <Check className="w-3.5 h-3.5" />}
                     </div>
                     <div className="flex-1">
-                      <p className={`text-sm ${task.completedBy.includes(user?.username || "") ? 'text-green-300 font-medium' : 'text-gray-200'}`}>{task.title}</p>
+                      <p className={`text-sm ${task.completedBy.includes(user?.username || "") ? 'text-green-300 font-medium' : 'text-gray-700 dark:text-gray-200'}`}>{task.title}</p>
                       <div className="mt-1 flex items-center gap-2">
                         <span className="text-[10px] font-mono font-bold text-yellow-500 uppercase tracking-wider">+{task.rewardXP} XP</span>
                       </div>
@@ -417,23 +417,23 @@ export default function TournamentArenaView() {
           </HighlightBlock>
 
           <HighlightBlock isActive={activeOverlayId === "leaderboard"} tooltipNode={renderTooltip("leaderboard")}>
-            <div className="glass-card border t-border rounded-2xl shadow-xl bg-black/20 backdrop-blur-md overflow-hidden relative">
+            <div className="glass-card border t-border rounded-2xl shadow-xl bg-gray-50/80 dark:bg-black/20 backdrop-blur-md overflow-hidden relative">
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl rounded-full" />
-              <div className="p-4 border-b t-border bg-black/40 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-gray-300 font-mono text-sm tracking-widest uppercase">
+              <div className="p-4 border-b t-border bg-gray-100/80 dark:bg-black/40 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 font-mono text-sm tracking-widest uppercase">
                   <Activity className="w-4 h-4 text-green-500" />
                   {t("arena.leaderboard") || "Live Leaderboard"}
                 </div>
-                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("leaderboard"); }} className="p-1 hover:bg-white/10 rounded-full transition-colors text-gray-400 hover:text-white">
+                <button onClick={(e) => { e.stopPropagation(); handleInfoClick("leaderboard"); }} className="p-1 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white">
                   <Info className="w-4 h-4" />
                 </button>
               </div>
               <div className="p-3 sm:p-4 flex flex-col gap-2 relative z-10">
                 {sortedPlayers.map((p, idx) => (
-                  <div key={p} className="flex items-center justify-between p-2 rounded-lg bg-black/40 border border-white/5">
+                  <div key={p} className="flex items-center justify-between p-2 rounded-lg bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/5">
                     <div className="flex items-center gap-3">
                       <span className="text-gray-500 font-mono text-xs">#{idx + 1}</span>
-                      <span className={`font-bold ${p === user?.username ? 'text-green-400' : 'text-gray-300'}`}>{p}</span>
+                      <span className={`font-bold ${p === user?.username ? 'text-green-400' : 'text-gray-700 dark:text-gray-300'}`}>{p}</span>
                     </div>
                     <span className="font-mono text-yellow-500 font-bold text-xs">{lobby.xp?.[p] || 0} XP</span>
                   </div>
@@ -451,15 +451,15 @@ export default function TournamentArenaView() {
         <div className="lg:col-span-6 flex flex-col gap-4 relative min-h-0 overflow-y-auto lg:overflow-visible">
           
           <HighlightBlock isActive={activeOverlayId === "hub"} tooltipNode={renderTooltip("hub")} className="flex-1 flex flex-col">
-            <div className="glass-card border t-border rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between shadow-xl shadow-black/20 backdrop-blur-xl bg-black/40 gap-4 sm:gap-0 shrink-0">
+            <div className="glass-card border t-border rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between shadow-xl shadow-black/10 dark:shadow-black/20 backdrop-blur-xl bg-gray-100/80 dark:bg-black/40 gap-4 sm:gap-0 shrink-0">
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <div className="w-10 h-10 rounded-xl bg-green-500/20 border border-green-500/50 flex items-center justify-center shrink-0">
                   <Shield className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
-                  <h1 className="text-xl sm:text-2xl font-black uppercase tracking-widest text-white flex items-center gap-2">
+                  <h1 className="text-xl sm:text-2xl font-black uppercase tracking-widest text-black dark:text-white flex items-center gap-2">
                     {t("arena.scenario") || "Operation: Phantom Invoice"}
-                    <button onClick={(e) => { e.stopPropagation(); handleInfoClick("hub"); }} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+                    <button onClick={(e) => { e.stopPropagation(); handleInfoClick("hub"); }} className="p-1 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors">
                       <Info className="w-4 h-4 text-gray-400 hover:text-white" />
                     </button>
                   </h1>
@@ -470,7 +470,7 @@ export default function TournamentArenaView() {
             <div className="flex items-center gap-4 shrink-0">
               <div className="flex flex-col items-end">
                 <span className="text-[10px] font-mono uppercase t-text-muted">{t("arena.time_remaining") || "Time Remaining"}</span>
-                <div className={`text-3xl sm:text-4xl font-mono font-black tracking-widest ${timeLeft < 60 ? "text-red-500 animate-pulse" : "text-white"}`}>
+                <div className={`text-3xl sm:text-4xl font-mono font-black tracking-widest ${timeLeft < 60 ? "text-red-500 animate-pulse" : "text-black dark:text-white"}`}>
                   {formatTime(timeLeft)}
                 </div>
               </div>
@@ -484,12 +484,12 @@ export default function TournamentArenaView() {
             </div>
           </div>
 
-          <div className="glass-card flex-1 border t-border rounded-2xl relative overflow-hidden bg-black/40 shadow-inner min-h-[400px] flex items-center justify-center mt-4">
+          <div className="glass-card flex-1 border t-border rounded-2xl relative overflow-hidden bg-gray-100/80 dark:bg-black/40 shadow-inner min-h-[400px] flex items-center justify-center mt-4">
             <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:30px_30px]" />
             <div className="relative w-[350px] h-[350px] md:w-[500px] md:h-[500px]">
               
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <div className="w-36 h-36 rounded-full border-4 border-dashed t-border-accent flex items-center justify-center bg-black/80 shadow-[0_0_50px_rgba(52,211,153,0.3)]">
+                <div className="w-36 h-36 rounded-full border-4 border-dashed t-border-accent flex items-center justify-center bg-gray-200 dark:bg-black/80 shadow-[0_0_50px_rgba(52,211,153,0.3)]">
                   <div className="w-24 h-24 rounded-full t-bg border border-green-500/30 flex items-center justify-center flex-col">
                     <Crosshair className="w-10 h-10 t-text-accent mb-2" />
                     <span className="text-xs font-mono font-bold text-center leading-tight t-text" dangerouslySetInnerHTML={{__html: (t("arena.active_target") || "ACTIVE<br/>TARGET").replace(" ", "<br/>") }}></span>
@@ -521,7 +521,7 @@ export default function TournamentArenaView() {
                       style={{ marginLeft: `${x}px`, marginTop: `${y}px` }}
                     >
                       {/* INCREASED NODE SIZES */}
-                      <div className={`w-20 h-20 rounded-full flex flex-col items-center justify-center border-2 bg-black ${
+                      <div className={`w-20 h-20 rounded-full flex flex-col items-center justify-center border-2 bg-gray-100 dark:bg-black ${
                         isActive 
                           ? "border-green-400 shadow-[0_0_25px_rgba(74,222,128,0.6)] scale-110" 
                           : "border-gray-600/50 scale-100"
@@ -551,13 +551,13 @@ export default function TournamentArenaView() {
         {/* ==================================================================================== */}
         <div className="lg:col-span-3 flex flex-col gap-2 relative min-h-0 overflow-y-auto lg:overflow-visible">
           <HighlightBlock isActive={activeOverlayId === "commlink"} tooltipNode={renderTooltip("commlink")} className="flex-1 flex flex-col min-h-0">
-            <div className="glass-card border t-border rounded-2xl flex flex-col overflow-hidden shadow-xl shadow-black/20 backdrop-blur-xl bg-black/40 relative flex-1 min-h-0">
+            <div className="glass-card border t-border rounded-2xl flex flex-col overflow-hidden shadow-xl shadow-black/10 dark:shadow-black/20 backdrop-blur-xl bg-gray-50/80 dark:bg-black/40 relative flex-1 min-h-0">
               <div className="p-4 t-bg-secondary border-b t-border flex flex-col shrink-0">
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
                     <Server className="w-5 h-5 t-text-accent" />
                     <h2 className="font-mono font-bold tracking-widest text-sm uppercase">{t("arena.commlink") || "Encrypted Comm-Link"}</h2>
-                    <button onClick={(e) => { e.stopPropagation(); handleInfoClick("commlink"); }} className="p-1 rounded-full hover:bg-white/10 transition-colors">
+                    <button onClick={(e) => { e.stopPropagation(); handleInfoClick("commlink"); }} className="p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
                       <Info className="w-4 h-4 t-text-secondary" />
                     </button>
                   </div>
@@ -569,7 +569,7 @@ export default function TournamentArenaView() {
                   <div key={idx} className="animate-fade-in-up">
                     {msg.type === "system" || msg.sender === "System" ? (
                       <div className="text-center my-4">
-                        <span className="text-[10px] font-mono t-text-muted italic bg-black/20 px-3 py-1 rounded-full border border-white/5">
+                        <span className="text-[10px] font-mono t-text-muted italic bg-gray-100 dark:bg-black/20 px-3 py-1 rounded-full border border-gray-200 dark:border-white/5">
                           {msg.time} — {msg.content}
                         </span>
                       </div>
@@ -579,10 +579,10 @@ export default function TournamentArenaView() {
                           <span className="text-[10px] font-mono font-bold t-text-secondary">{msg.sender}</span>
                           <span className="text-[9px] font-mono t-text-muted">{msg.time}</span>
                         </div>
-                        <div className={`px-4 py-2.5 rounded-2xl max-w-[85%] text-sm shadow-sm ${
+                        <div className={`px-4 py-3 max-w-[85%] text-lg font-semibold ${
                           msg.sender === user?.username 
-                            ? "t-accent-bg text-black font-medium border border-green-500/20 rounded-tr-sm" 
-                            : "t-bg-secondary t-border border rounded-tl-sm t-text"
+                            ? "bg-[#1EB863] text-black border-b-2 border-[#168a4a] rounded-2xl rounded-tr-sm" 
+                            : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white border-2 border-gray-200 dark:border-gray-700 rounded-2xl rounded-tl-sm"
                         }`}>
                           {msg.content}
                         </div>
@@ -592,7 +592,7 @@ export default function TournamentArenaView() {
                 ))}
               </div>
 
-              <div className="p-3 t-bg-secondary border-t t-border shrink-0">
+              <div className="p-3 bg-white dark:bg-[#13191E] border-t-2 border-gray-200 dark:border-gray-700 shrink-0">
                 <form onSubmit={handleSendMessage} className="flex gap-2 relative">
                   <input 
                     type="text" 
@@ -600,14 +600,14 @@ export default function TournamentArenaView() {
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder={t("arena.transmit") || "Transmit message..."}
                     disabled={lobby.status === 'completed'}
-                    className="flex-1 bg-black/30 border t-border focus:t-border-accent rounded-xl px-4 py-3 text-sm outline-none t-text font-mono transition-colors disabled:opacity-50"
+                    className="flex-1 bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 focus:border-[#1EB863] dark:focus:border-[#1EB863] rounded-xl px-4 py-3 text-base font-semibold text-black dark:text-white outline-none transition-colors disabled:opacity-50"
                   />
                   <button 
                     type="submit"
                     disabled={!chatInput.trim() || lobby.status === 'completed'}
-                    className="p-3 t-accent-bg rounded-xl text-black hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 transition-all flex items-center justify-center"
+                    className="p-3 btn-primary text-black disabled:opacity-50 transition-all flex items-center justify-center"
                   >
-                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <Send className="w-5 h-5" />
                   </button>
                 </form>
               </div>
@@ -618,7 +618,7 @@ export default function TournamentArenaView() {
             <button onClick={handleProposeDeal} disabled={lobby.status === 'completed'} className="w-full py-3 sm:py-4 border-2 border-blue-500/30 hover:border-blue-500/50 bg-blue-950/30 hover:bg-blue-900/50 rounded-xl transition-all flex items-center justify-center gap-2 text-blue-400 hover:text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]">
               <Handshake className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="font-bold text-xs sm:text-sm tracking-widest uppercase">{t("arena.propose_deal") || "Propose Deal"}</span>
-              <div onClick={(e) => { e.stopPropagation(); handleInfoClick("propose_deal"); }} className="p-1 hover:bg-white/10 rounded-full transition-colors text-blue-400 hover:text-white ml-2">
+              <div onClick={(e) => { e.stopPropagation(); handleInfoClick("propose_deal"); }} className="p-1 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-blue-400 hover:text-blue-600 dark:hover:text-white ml-2">
                 <Info className="w-4 h-4" />
               </div>
             </button>
@@ -632,26 +632,26 @@ export default function TournamentArenaView() {
       {/* ==================================================================================== */}
       {showResults && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
-          <div className="relative max-w-xl w-full p-8 rounded-3xl shadow-2xl animate-fade-in-up flex flex-col items-center text-center border border-white/10" style={{ background: "radial-gradient(circle at center, #1a202c, #000)" }}>
+          <div className="absolute inset-0 bg-black/70 dark:bg-black/90 backdrop-blur-md" />
+          <div className="relative max-w-xl w-full p-8 rounded-3xl shadow-2xl animate-fade-in-up flex flex-col items-center text-center border border-gray-200 dark:border-white/10 bg-white dark:bg-transparent" style={{ background: undefined }} >
             
             <Trophy className="w-16 h-16 text-yellow-400 mb-6" />
-            <h2 className="text-3xl font-black text-white mb-2 uppercase tracking-widest">{t("arena.op_concluded") || "Operation Concluded"}</h2>
+            <h2 className="text-3xl font-black text-black dark:text-white mb-2 uppercase tracking-widest">{t("arena.op_concluded") || "Operation Concluded"}</h2>
             
             <div className="text-xl font-bold mb-8">
               {t("arena.victory") || "Victory goes to the"} <span className={lobby.winner === "Fraudster" ? "text-red-400" : "text-blue-400"}>{lobby.winner}</span>!
             </div>
 
-            <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 text-left space-y-4">
+            <div className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-6 mb-8 text-left space-y-4">
               <h3 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t("arena.post_game") || "Post-Game Intel"}</h3>
-              <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                <span className="text-gray-300">{t("arena.fraudster_was") || "The Fraudster was:"}</span>
+              <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-2">
+                <span className="text-gray-700 dark:text-gray-300">{t("arena.fraudster_was") || "The Fraudster was:"}</span>
                 <span className="font-bold text-red-400">
                   {Object.keys(lobby.roles || {}).find(k => lobby.roles![k] === "Fraudster") || "Unknown"}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-300">{t("arena.xp_earned") || "Your Base XP Earned:"}</span>
+                <span className="text-gray-700 dark:text-gray-300">{t("arena.xp_earned") || "Your Base XP Earned:"}</span>
                 <span className="font-bold text-yellow-400">+150 XP</span>
               </div>
             </div>
@@ -671,12 +671,12 @@ export default function TournamentArenaView() {
       {/* ==================================================================================== */}
       {showPenaltyModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowPenaltyModal(false)} />
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm" onClick={() => setShowPenaltyModal(false)} />
           <div className="relative glass-card border-2 border-red-500/50 bg-red-950/90 max-w-md w-full p-6 rounded-2xl shadow-[0_0_50px_rgba(239,68,68,0.3)] animate-fade-in-up">
             <div className="w-16 h-16 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center mx-auto mb-4">
               <AlertTriangle className="w-8 h-8 text-red-500 animate-pulse" />
             </div>
-            <h2 className="text-2xl font-black text-center text-white mb-2 uppercase tracking-widest">{t("arena.abandon") || "Abandon Operation?"}</h2>
+            <h2 className="text-2xl font-black text-center text-black dark:text-white mb-2 uppercase tracking-widest">{t("arena.abandon") || "Abandon Operation?"}</h2>
             <p className="text-center text-red-200 mb-6 font-mono text-sm leading-relaxed">
               {t("arena.abandon_warn") || "WARNING: Abandoning an active tournament will result in an immediate ELO penalty and forfeit of all session XP."}
             </p>

@@ -208,7 +208,7 @@ export default function TournamentsView() {
               className="w-full py-4 t-accent-bg rounded-xl font-bold uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
             >
               <Play className="w-5 h-5 fill-current" />
-              {activeLobby.status === 'active' ? "Operation Active" : (t("tournaments.commence_op") || "Commence Operation")}
+              {activeLobby.status === 'active' ? (t("tournaments.op_active") || "Operation Active") : (t("tournaments.commence_op") || "Commence Operation")}
             </button>
             <button 
               onClick={handleLeaveLobby}
@@ -236,15 +236,15 @@ export default function TournamentsView() {
           <h1 className="text-2xl font-bold t-text tracking-wide">{t("tournaments.title") || "Multiplayer Ops"}</h1>
           <p className="text-sm t-text-secondary">{t("tournaments.subtitle") || "Train together. Trust no one."}</p>
         </div>
-        <button onClick={() => setFocusedSection(focusedSection === "header" ? null : "header")} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+        <button onClick={() => setFocusedSection(focusedSection === "header" ? null : "header")} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
           <Info className="w-5 h-5 t-text-secondary" />
         </button>
       </div>
 
       {focusedSection === "header" && (
-        <div className="bg-black/90 border border-green-500/50 rounded-xl p-4 shadow-2xl mb-6 animate-fade-in-up">
+        <div className="bg-white dark:bg-black/90 border border-green-500/50 rounded-xl p-4 shadow-2xl mb-6 animate-fade-in-up">
           <h4 className="text-green-400 font-bold mb-1">{t("tournaments.info_header_title") || "Squad Management"}</h4>
-          <p className="text-xs text-gray-300">{t("tournaments.info_header_desc") || "Join an existing operation with a code, or host your own secure lobby for up to 4 operatives."}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-300">{t("tournaments.info_header_desc") || "Join an existing operation with a code, or host your own secure lobby for up to 4 operatives."}</p>
         </div>
       )}
 
@@ -370,15 +370,15 @@ export default function TournamentsView() {
       <div className="relative">
         <div className="flex items-center justify-between mb-3 pl-1">
           <h3 className="text-xs font-mono t-text-muted uppercase tracking-wider">{t("tournaments.global_ops") || "Global Operations"}</h3>
-          <button onClick={() => setFocusedSection(focusedSection === "global" ? null : "global")} className="p-1 rounded-full hover:bg-white/10 transition-colors">
+          <button onClick={() => setFocusedSection(focusedSection === "global" ? null : "global")} className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
             <Info className="w-4 h-4 t-text-secondary" />
           </button>
         </div>
 
         {focusedSection === "global" && (
-          <div className="absolute bottom-full left-0 w-full bg-black/90 border border-green-500/50 rounded-xl p-4 shadow-2xl mb-2 z-20 animate-fade-in-up">
+          <div className="absolute bottom-full left-0 w-full bg-white dark:bg-black/90 border border-green-500/50 rounded-xl p-4 shadow-2xl mb-2 z-20 animate-fade-in-up">
             <h4 className="text-green-400 font-bold mb-1">{t("tournaments.info_global_title") || "Global Tournaments"}</h4>
-            <p className="text-xs text-gray-300">{t("tournaments.info_global_desc") || "Compete in massive scheduled events against hundreds of players for exclusive badges and high XP payouts."}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-300">{t("tournaments.info_global_desc") || "Compete in massive scheduled events against hundreds of players for exclusive badges and high XP payouts."}</p>
           </div>
         )}
         <div className="p-6 border border-dashed t-border rounded-2xl flex flex-col items-center justify-center text-center">

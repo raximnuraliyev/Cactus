@@ -3,34 +3,45 @@
 /* ─── Theme Custom Properties ─────────────────── */
 :root {
   /* Requested Variables */
-  --bg-main: #1A1A2E;       /* Dark cyber-blue/black for main background */
-  --bg-card: #161B22;       /* Slightly lighter dark for cards/containers */
-  --text-main: #FAFAFA;     /* High-contrast white for primary text/headings */
-  --text-muted: #8B949E;    /* Light gray for secondary text/labels (improves readability) */
-  --accent-neon: #00FF66;   /* Matrix green for primary actions/active tabs */
-  --accent-dark: #238636;   /* Darker green for borders/secondary accents */
+  --bg-main: #FFFFFF;       /* Light mode background */
+  --bg-card: #FFFFFF;       /* Light mode card */
+  --text-main: #000000;     /* Light mode text */
+  --text-muted: #6B7280;    /* Light mode muted text */
+  --accent-neon: #1EB863;   /* The core green */
+  --accent-dark: #168a4a;   /* The darker bottom border green */
 
   /* Legacy Mapping */
   --bg-primary: var(--bg-main);
   --bg-secondary: var(--bg-card);
-  --bg-elevated: rgba(22, 27, 34, 0.95);
+  --bg-elevated: #F9FAFB;
   --text-primary: var(--text-main);
   --text-secondary: var(--text-muted);
   --accent: var(--accent-neon);
-  --accent-hover: #00e65c;
-  --accent-muted: rgba(0, 255, 102, 0.15);
-  --accent-text: #0D1117;
-  --border: rgba(139, 148, 158, 0.2);
+  --accent-hover: #1EB863;
+  --accent-muted: rgba(30, 184, 99, 0.15);
+  --accent-text: #000000;
+  --border: #E5E7EB; /* gray-200 */
   --border-accent: var(--accent-dark);
-  --danger: #F87171;
-  --danger-muted: rgba(248,113,113,0.1);
+  --danger: #EF4444;
+  --danger-muted: rgba(239, 68, 68, 0.1);
   --warning: #FBBF24;
-  --chat-incoming: rgba(255,255,255,0.06);
-  --chat-outgoing: var(--accent-dark);
-  --chat-outgoing-text: var(--text-main);
-  --nav-bg: rgba(13, 17, 23, 0.95);
-  --shadow-color: rgba(0,0,0,0.5);
+  --chat-incoming: #F3F4F6;
+  --chat-outgoing: var(--accent-neon);
+  --chat-outgoing-text: #000000;
+  --nav-bg: #FFFFFF;
+  --shadow-color: rgba(0,0,0,0.05);
   --spline-opacity: 0.15;
+}
+
+.dark {
+  --bg-main: #0B0F12;       /* Pure dark for dark theme */
+  --bg-card: #13191E;       /* Card background dark theme */
+  --text-main: #FFFFFF;     /* White text for dark mode */
+  --text-muted: #9CA3AF;    /* Gray-400 for dark mode */
+  --bg-elevated: #1F2937;
+  --border: #374151;        /* Gray-700 */
+  --chat-incoming: #1F2937;
+  --nav-bg: #0B0F12;
 }
 
 @layer utilities {
@@ -97,25 +108,70 @@
   /* ─── Glassmorphism card ────────────────────── */
   .glass-card {
     background: var(--bg-card);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 1.25rem;
+    box-shadow: none;
   }
   .glass-card-accent {
     background: var(--bg-card);
-    border: 1px solid var(--border-accent);
+    border: 2px solid var(--border-accent);
     border-radius: 1.25rem;
+    box-shadow: none;
+  }
+  
+  /* ─── Flat Cyber UI Elements ────────────────── */
+  .btn-primary {
+    background-color: #1EB863;
+    color: #000000;
+    font-size: 1.125rem;
+    font-weight: 800;
+    border-bottom: 4px solid #168a4a;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0.75rem;
+    transition: transform 0.1s;
+  }
+  .btn-primary:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    transform: none;
+    border-bottom-width: 4px;
+    cursor: not-allowed;
+  }
+  
+  .btn-ghost {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+  }
+  .btn-ghost:active {
+    transform: translateY(2px);
   }
 
   /* ─── Telegram chat bubble styles ──────────── */
   .chat-bubble-incoming {
     background: var(--chat-incoming);
+    border: 2px solid var(--border);
     border-radius: 1.125rem 1.125rem 1.125rem 0.25rem;
     color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
   }
   .chat-bubble-outgoing {
     background: var(--chat-outgoing);
+    border-bottom: 2px solid var(--accent-dark);
     border-radius: 1.125rem 1.125rem 0.25rem 1.125rem;
     color: var(--chat-outgoing-text);
+    font-size: 1.125rem;
+    font-weight: 600;
   }
 
   /* ─── Custom scrollbar ─────────────────────── */
@@ -189,7 +245,7 @@
 }
 
 @theme {
-  --font-sans: 'Space Grotesk', sans-serif;
+  --font-sans: 'Quicksand', 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --color-green-300: #34d399;

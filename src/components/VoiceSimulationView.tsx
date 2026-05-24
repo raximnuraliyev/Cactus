@@ -78,11 +78,11 @@ export default function VoiceSimulationView() {
           
           <div className="relative z-10 flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-pulse">
-              <Phone className="w-10 h-10 text-emerald-400" />
+              <Phone className="w-10 h-10 text-emerald-500 dark:text-emerald-400" />
             </div>
             
-            <h2 className="text-2xl font-bold t-text tracking-wide mb-2">Davron aka (Boss)</h2>
-            <p className="text-emerald-400 font-mono text-sm tracking-widest uppercase mb-10">
+            <h2 className="text-2xl font-bold t-text tracking-wide mb-2">{t.davron}</h2>
+            <p className="text-emerald-600 dark:text-emerald-400 font-mono text-sm tracking-widest uppercase mb-10">
               {t.incoming}
             </p>
 
@@ -131,8 +131,8 @@ export default function VoiceSimulationView() {
             {isBreached ? t.breach : t.success}
           </h2>
           
-          <div className="flex flex-col items-center bg-black/20 p-6 rounded-2xl w-full max-w-sm my-6 border t-border">
-            <span className="text-xs t-text-secondary uppercase tracking-widest mb-2 font-mono">Final Metrics</span>
+          <div className="flex flex-col items-center bg-gray-100 dark:bg-black/20 p-6 rounded-2xl w-full max-w-sm my-6 border t-border">
+            <span className="text-xs t-text-secondary uppercase tracking-widest mb-2 font-mono">{t.final_metrics}</span>
             <div className="text-4xl font-black font-mono tracking-tighter" style={{ color: isBreached ? '#ef4444' : '#10b981' }}>
               {score} PTS
             </div>
@@ -146,7 +146,7 @@ export default function VoiceSimulationView() {
               onClick={() => navigate('/home')}
               className="flex-1 py-3 t-bg-secondary t-text font-semibold rounded-xl border t-border hover:border-emerald-500/50 transition-all"
             >
-              Dashboard
+              {t.dashboard}
             </button>
             <button
               onClick={() => { setPhase(1); }}
@@ -188,12 +188,12 @@ export default function VoiceSimulationView() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-shimmer" />
             
             <div className="w-16 h-16 rounded-full t-bg-secondary border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.2)] mb-3 relative">
-               <Phone className="w-6 h-6 text-emerald-400" />
-               <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[#13191E]" />
+               <Phone className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
+               <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-[#13191E]" />
             </div>
             
-            <h3 className="text-lg font-bold t-text mb-1">Davron aka (Boss)</h3>
-            <div className="text-emerald-400 font-mono text-xl font-medium tracking-widest drop-shadow-md">
+            <h3 className="text-lg font-bold t-text mb-1">{t.davron}</h3>
+            <div className="text-emerald-600 dark:text-emerald-400 font-mono text-xl font-medium tracking-widest drop-shadow-md">
               {formatTime(secondsElapsed)}
             </div>
             
@@ -204,7 +204,7 @@ export default function VoiceSimulationView() {
 
         {/* 2.3 Live Speech-To-Text Subtitle Engine */}
         <div className="w-full max-w-2xl mx-auto space-y-3">
-          <h4 className="text-[10px] font-mono uppercase t-text-muted tracking-widest px-2">Live Transcript</h4>
+          <h4 className="text-[10px] font-mono uppercase t-text-muted tracking-widest px-2">{t.live_transcript}</h4>
           <div className="space-y-3">
             {subtitles.map((sub) => (
               <div key={sub.id} className={`flex ${sub.speaker === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
@@ -212,11 +212,11 @@ export default function VoiceSimulationView() {
                   className={`px-4 py-3 rounded-2xl max-w-[85%] text-[15px] leading-relaxed shadow-sm ${
                     sub.speaker === 'user' 
                       ? 't-bg-secondary border t-border t-text rounded-br-sm' 
-                      : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-50 rounded-bl-sm'
+                      : 'bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 text-emerald-900 dark:text-emerald-50 rounded-bl-sm'
                   }`}
                 >
                   <span className="text-[9px] uppercase font-bold opacity-50 block mb-1 tracking-wider">
-                    {sub.speaker === 'user' ? 'You' : 'Davron aka'}
+                    {sub.speaker === 'user' ? t.you : t.davron}
                   </span>
                   {renderSubtitleText(sub.text)}
                 </div>
