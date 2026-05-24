@@ -17,6 +17,9 @@ import {
   Paperclip,
   X,
   User,
+  Info,
+  Wrench,
+  Search
 } from "lucide-react";
 
 export default function GameView() {
@@ -41,6 +44,8 @@ export default function GameView() {
   const [showToolsPanel, setShowToolsPanel] = useState(false);
   const [toolLogs, setToolLogs] = useState<string[]>([]);
   const [callerStatus, setCallerStatus] = useState<"connected" | "disconnected">("connected");
+  const [showBriefing, setShowBriefing] = useState(false);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -193,20 +198,22 @@ export default function GameView() {
 
   const handleFinishGame = () => {
     navigate("/game/evidence", {
-      state: { scenario, turns, toolsUsed, cluesFound },
+      state: { scenario, turns, toolsUsed, cluesFound, sessionId: session?.sessionId },
     });
   };
 
   const handleAbandon = () => {
-    if (confirm("Confirm abandoning the active investigation? Process state will clear.")) {
-      navigate("/home");
-    }
+    setShowExitConfirm(true);
+  };
+
+  const confirmAbandon = () => {
+    navigate("/home");
   };
 
   const loading = isAiLoading || gameLoading;
 
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] w-full max-w-2xl mx-auto glass-card overflow-hidden font-sans relative">
+    <div className="flex flex-col h-full w-full max-w-2xl mx-auto glass-card overflow-hidden font-sans relative">
       {/* Telegram-style Header */}
       <div className="t-bg-secondary px-4 py-3 t-border border-b flex justify-between items-center relative z-10 shrink-0 shadow-sm">
         <div className="flex items-center space-x-3">
@@ -232,13 +239,90 @@ export default function GameView() {
           </div>
         </div>
 
-        <button
-          onClick={handleAbandon}
-          className="text-xs t-text-muted border t-border rounded-full px-3 py-1.5 hover:t-danger hover:border-red-500/30 transition-all font-semibold"
-        >
-          {t("active_game.abort_case")}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowBriefing(true)}
+            className="p-1.5 rounded-full bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-all"
+            title={t("active_game.briefing_title") || "Case Briefing"}
+          >
+            <Info className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleAbandon}
+            className="text-xs t-text-muted border t-border rounded-full px-3 py-1.5 hover:t-danger hover:border-red-500/30 transition-all font-semibold"
+          >
+            {t("active_game.abort_case")}
+          </button>
+        </div>
       </div>
+
+      {/* Custom Exit Confirmation Modal */}
+      {showExitConfirm && (
+        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="t-bg-elevated border t-border rounded-2xl p-6 max-w-sm w-full shadow-2xl space-y-4">
+            <h3 className="text-lg font-bold t-text flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5 t-danger" />
+              Abandon Investigation?
+            </h3>
+            <p className="text-sm t-text-secondary">
+              Are you sure you want to abort? All progress in this session will be lost and your case will be closed.
+            </p>
+            <div className="flex gap-3 pt-2">
+              <button
+                onClick={() => setShowExitConfirm(false)}
+                className="flex-1 py-2.5 rounded-xl border t-border t-text hover:t-bg-secondary transition-all font-semibold"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmAbandon}
+                className="flex-1 py-2.5 rounded-xl bg-red-500/20 text-red-500 hover:bg-red-500/30 border border-red-500/30 transition-all font-semibold"
+              >
+                Confirm Abort
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Case Briefing Modal */}
+      {showBriefing && (
+        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="t-bg-elevated border t-border rounded-2xl p-6 max-w-sm w-full shadow-2xl space-y-4 max-h-[80vh] flex flex-col">
+            <div className="flex justify-between items-center border-b t-border pb-3 shrink-0">
+              <h3 className="text-lg font-bold t-text flex items-center gap-2">
+                <Info className="w-5 h-5 text-blue-400" />
+                Case Briefing
+              </h3>
+              <button onClick={() => setShowBriefing(false)} className="t-text-muted hover:t-text">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="overflow-y-auto space-y-4 text-sm t-text pr-2 scrollbar-hide flex-1">
+              <div>
+                <span className="text-[10px] font-mono t-text-muted uppercase tracking-widest block mb-1">Scenario</span>
+                <p className="font-semibold">{scenario.title}</p>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono t-text-muted uppercase tracking-widest block mb-1">Target Description</span>
+                <p className="t-text-secondary leading-relaxed">{scenario.briefing_text || session?.briefing}</p>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono t-text-muted uppercase tracking-widest block mb-1">Your Objective</span>
+                <p className="t-text-secondary leading-relaxed">Engage with the subject, utilize investigation tools, uncover their motives, and determine if this is a genuine request or a fraudulent attempt.</p>
+              </div>
+            </div>
+            <div className="pt-3 border-t t-border shrink-0">
+              <button
+                onClick={() => setShowBriefing(false)}
+                className="w-full py-2.5 rounded-xl t-accent-bg t-text font-bold uppercase tracking-wider active:scale-95 transition-all"
+              >
+                Understood
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Chat History Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -313,62 +397,7 @@ export default function GameView() {
         <div ref={bottomRef} className="h-2" />
       </div>
 
-      {/* Investigation Tools Slide-up Panel */}
-      {showToolsPanel && (
-        <div className="absolute bottom-[4.5rem] left-0 w-full t-bg-elevated border-t t-border z-20 animate-slide-up shadow-[0_-10px_40px_rgba(0,0,0,0.1)] rounded-t-3xl">
-          <div className="p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h4 className="text-sm font-semibold t-text-secondary tracking-wide">
-                Investigation Tools
-              </h4>
-              <button 
-                onClick={() => setShowToolsPanel(false)}
-                className="p-1 rounded-full t-bg-secondary t-text-secondary hover:t-text"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="grid grid-cols-2 gap-3 pb-2">
-              <button
-                onClick={() => handlePlayerAction(t("active_game.hang_up"), true, "hang_up")}
-                className="flex flex-col items-center justify-center gap-2 t-text border t-border t-bg-card hover:t-bg-secondary py-4 rounded-2xl transition-all shadow-sm"
-              >
-                <div className="p-3 rounded-full bg-red-500/10 text-red-500">
-                  <PhoneOff className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-medium">{t("active_game.hang_up_short")}</span>
-              </button>
-              <button
-                onClick={() => handlePlayerAction(t("active_game.employee_id"), true, "request_id")}
-                className="flex flex-col items-center justify-center gap-2 t-text border t-border t-bg-card hover:t-bg-secondary py-4 rounded-2xl transition-all shadow-sm"
-              >
-                <div className="p-3 rounded-full bg-blue-500/10 text-blue-500">
-                  <Lock className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-medium">{t("active_game.query_id")}</span>
-              </button>
-              <button
-                onClick={() => handlePlayerAction(t("active_game.complain"), true, "complain_supervisor")}
-                className="flex flex-col items-center justify-center gap-2 t-text border t-border t-bg-card hover:t-bg-secondary py-4 rounded-2xl transition-all shadow-sm"
-              >
-                <div className="p-3 rounded-full bg-amber-500/10 text-amber-500">
-                  <Briefcase className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-medium">{t("active_game.call_supervisor")}</span>
-              </button>
-              <button
-                onClick={() => handlePlayerAction(t("active_game.flag_suspicious"), false, "flag_dialog")}
-                className="flex flex-col items-center justify-center gap-2 t-text border t-border t-bg-card hover:t-bg-secondary py-4 rounded-2xl transition-all shadow-sm"
-              >
-                <div className="p-3 rounded-full bg-emerald-500/10 text-emerald-500">
-                  <ShieldAlert className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-medium">{t("active_game.flag_suspicious_short")}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
 
       {/* Choice Quick-Replies & Input Area */}
       <div className="t-bg-secondary border-t t-border shrink-0 relative z-30">
@@ -391,15 +420,66 @@ export default function GameView() {
               </div>
             )}
 
+            {/* Investigation Tools Slide-up Panel */}
+            {showToolsPanel && (
+              <div className="w-full t-bg-elevated border t-border animate-fade-in shadow-[0_-5px_20px_rgba(0,0,0,0.05)] rounded-2xl overflow-hidden mb-2">
+                <div className="p-3">
+                  <div className="flex justify-between items-center mb-3">
+                    <h4 className="text-sm font-semibold t-text-secondary tracking-wide flex items-center gap-2">
+                      <Search className="w-4 h-4 t-text-accent" />
+                      Investigation Tools
+                    </h4>
+                    <button 
+                      onClick={() => setShowToolsPanel(false)}
+                      className="p-1 rounded-full t-bg-secondary t-text-secondary hover:t-text"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => handlePlayerAction(t("active_game.hang_up"), true, "hang_up")}
+                      className="flex flex-col items-center justify-center gap-1.5 t-text border t-border t-bg-card hover:t-bg-secondary py-3 rounded-xl transition-all shadow-sm"
+                    >
+                      <PhoneOff className="w-4 h-4 text-red-500" />
+                      <span className="text-[10px] font-medium text-center px-1">Terminate Call</span>
+                    </button>
+                    <button
+                      onClick={() => handlePlayerAction(t("active_game.employee_id"), true, "request_id")}
+                      className="flex flex-col items-center justify-center gap-1.5 t-text border t-border t-bg-card hover:t-bg-secondary py-3 rounded-xl transition-all shadow-sm"
+                    >
+                      <Lock className="w-4 h-4 text-blue-500" />
+                      <span className="text-[10px] font-medium text-center px-1">Verify ID Badge</span>
+                    </button>
+                    <button
+                      onClick={() => handlePlayerAction(t("active_game.complain"), true, "complain_supervisor")}
+                      className="flex flex-col items-center justify-center gap-1.5 t-text border t-border t-bg-card hover:t-bg-secondary py-3 rounded-xl transition-all shadow-sm"
+                    >
+                      <Briefcase className="w-4 h-4 text-amber-500" />
+                      <span className="text-[10px] font-medium text-center px-1">Supervisor Query</span>
+                    </button>
+                    <button
+                      onClick={() => handlePlayerAction(t("active_game.flag_suspicious"), false, "flag_dialog")}
+                      className="flex flex-col items-center justify-center gap-1.5 t-text border t-border t-bg-card hover:t-bg-secondary py-3 rounded-xl transition-all shadow-sm"
+                    >
+                      <ShieldAlert className="w-4 h-4 text-emerald-500" />
+                      <span className="text-[10px] font-medium text-center px-1">Flag Red Flag</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Input Bar */}
             <form onSubmit={submitTextQuery} className="flex items-end gap-2 relative">
               <button
                 type="button"
                 onClick={() => setShowToolsPanel(!showToolsPanel)}
                 disabled={loading || callerStatus === "disconnected"}
-                className={`p-3 rounded-full transition-all flex-shrink-0 ${showToolsPanel ? 't-accent-bg' : 't-text-muted hover:t-text-secondary'}`}
+                className={`p-3 rounded-full transition-all flex-shrink-0 flex items-center justify-center ${showToolsPanel ? 't-accent-bg shadow-md text-white' : 't-bg border t-border hover:t-border-accent hover:t-text-accent'}`}
+                title="Investigation Tools"
               >
-                <Paperclip className="w-5 h-5" />
+                <Wrench className="w-5 h-5" />
               </button>
               
               <div className="flex-1 relative">
@@ -429,17 +509,20 @@ export default function GameView() {
         )}
 
         {/* End Game Button */}
-        {canEnd && (
-          <div className="p-3 border-t t-border t-bg-secondary">
-            <button
-              onClick={handleFinishGame}
-              className="w-full py-3.5 t-accent-bg font-semibold text-[15px] rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 shadow-lg transition-all"
-            >
-              <CheckCircle2 className="w-5 h-5" />
-              {t("active_game.finish_game")}
-            </button>
-          </div>
-        )}
+        <div className="p-3 border-t t-border t-bg-secondary">
+          <button
+            onClick={handleFinishGame}
+            disabled={!canEnd}
+            className={`w-full py-3.5 font-semibold text-[15px] rounded-xl flex items-center justify-center gap-2 transition-all ${
+              canEnd 
+                ? "t-accent-bg hover:opacity-90 active:scale-95 shadow-lg" 
+                : "t-bg-card border t-border t-text-muted cursor-not-allowed"
+            }`}
+          >
+            <CheckCircle2 className="w-5 h-5" />
+            {canEnd ? t("active_game.finish_game") : `Gather more evidence (${Math.min(3, turns.length)}/3)`}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     title: "Central Bank Urgent Verification",
     difficulty: "easy",
     characterIntro: "Alex Mercer from Security Operations Division",
-    briefing: "You receive an incoming call from a Tashkent number (+998 71 200-XX-XX). The caller introduces himself as Alex Mercer, Senior Officer from the Cyber-Security division of your main bank.",
+    briefing: "You are an Undercover Cyber Agent. A suspicious call was flagged originating from Tashkent (+998 71 200-XX-XX). The target introduces himself as Alex Mercer, Senior Officer from the Cyber-Security division of a bank. Interrogate the subject to uncover their true intentions.",
     isRealCharacter: false,
     totalClues: 3,
     clues: [
@@ -66,7 +66,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     title: "System Authentication Failure Alert",
     difficulty: "medium",
     characterIntro: "IT System Administrator (admin@secure-logon-notification.com)",
-    briefing: "You receive an urgent flag in your inbox. Topic: '[CRITICAL SECURITY ACTION REQUIRED] Account Deactivation'. The email looks highly professional, wearing your company's full security headers and official logos, urging a password change.",
+    briefing: "You are an Undercover Fraud Analyst. An urgent email was intercepted targeting a corporate employee. Topic: '[CRITICAL SECURITY ACTION REQUIRED] Account Deactivation'. The email looks highly professional, wearing your company's full security headers. Engage with the sender to determine if they are a legitimate IT admin or a threat actor.",
     isRealCharacter: false,
     totalClues: 3,
     clues: [
@@ -113,7 +113,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     title: "Mysterious Cashback Refund Redirect",
     difficulty: "medium",
     characterIntro: "Refund Operations Desk",
-    briefing: "An SMS arrives: 'CONGRATULATIONS! You received a cashback reward of 450,000 UZS. Click to claim your payout instantly: pay-cashback-tashkent.uz/claim'. The portal asks you to choose your bank and type your card billing parameters.",
+    briefing: "You are an Undercover Cyber Agent. A mass SMS campaign was flagged: 'CONGRATULATIONS! You received a cashback reward of 450,000 UZS. Click to claim your payout instantly'. You have connected to their live chat support. Investigate the portal's intentions.",
     isRealCharacter: false,
     totalClues: 3,
     clues: [
@@ -148,7 +148,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     title: "Corporate Audit Official Mandate",
     difficulty: "hard",
     characterIntro: "Executive Inspector Tarasova",
-    briefing: "Your agency receives an email with an encrypted PDF attachment. Topic: 'Notice of Special Taxation Offsets audit'. The document carries official government signatures, stamps, and is watermarked strictly secret. It demands you to download an executable decryption tool to open the balance ledger.",
+    briefing: "You are an Undercover Analyst. A high-priority encrypted PDF attachment was intercepted. Topic: 'Notice of Special Taxation Offsets audit'. The sender demands the victim download an executable decryption tool. Interrogate the sender to verify if this is an official state mandate or a malware drop.",
     isRealCharacter: false,
     totalClues: 4,
     clues: [

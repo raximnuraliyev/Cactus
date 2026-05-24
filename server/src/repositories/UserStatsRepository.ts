@@ -69,6 +69,7 @@ export class UserStatsRepository {
     const result = await query<UserStats>(
       `UPDATE user_stats
        SET total_games = total_games + 1,
+           placement_games_played = LEAST(5, placement_games_played + 1),
            correct_verdicts = correct_verdicts + $2,
            accuracy_pct = CASE
              WHEN total_games + 1 > 0

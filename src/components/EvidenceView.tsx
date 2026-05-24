@@ -27,6 +27,7 @@ export default function EvidenceView() {
     turns?: Turn[];
     toolsUsed?: string[];
     cluesFound?: string[];
+    sessionId?: string;
   } | null;
 
   if (!routeState?.scenario) {
@@ -34,7 +35,7 @@ export default function EvidenceView() {
     return null;
   }
 
-  const { scenario, toolsUsed = [], cluesFound = [] } = routeState;
+  const { scenario, toolsUsed = [], cluesFound = [], sessionId } = routeState;
 
   const cyberTactics = [
     "Authority combined with Urgency pressure",
@@ -48,11 +49,14 @@ export default function EvidenceView() {
     if (!selectedVerdict || isSubmitting) return;
     setIsSubmitting(true);
     try {
-      const result = await submitVerdict(selectedVerdict, cluesFound);
+      const result = await submitVerdict(selectedVerdict, cluesFound, sessionId);
       navigate("/game/debrief", {
         state: {
           scenario,
-          result,
+          result: {
+            ...result,
+            cluesFound // Pass the string array instead of the integer from the backend
+          },
           verdictGiven: selectedVerdict
         }
       });

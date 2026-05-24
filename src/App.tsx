@@ -26,6 +26,7 @@ import LeaderboardView from "./components/LeaderboardView";
 import BadgeView from "./components/BadgeView";
 import TournamentsView from "./components/TournamentsView";
 import TournamentArenaView from "./components/TournamentArenaView";
+import VoiceSimulationView from "./components/VoiceSimulationView";
 
 import {
   Shield,
@@ -51,7 +52,8 @@ export default function App() {
     location.pathname.startsWith("/auth");
     
   const isArenaView = location.pathname.startsWith("/tournaments/arena");
-  const showNav = !isPublicRoute && user && !isArenaView;
+  const isGameActive = location.pathname.startsWith("/game/") && location.pathname !== "/game/evidence" && location.pathname !== "/game/debrief" && location.pathname !== "/game/start";
+  const showNav = !isPublicRoute && user && !isArenaView && !isGameActive;
 
   // Active nav state helper
   const isNavActive = (paths: string[]) =>
@@ -102,7 +104,7 @@ export default function App() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-400/20 to-transparent shadow-[0_0_10px_rgba(0,255,0,0.3)] z-10 animate-pulse" />
 
       {/* Cybernetic Bezel Container Frame */}
-      <div className="relative w-full max-w-full min-h-screen z-10 flex flex-col px-2 py-3 sm:px-4 sm:py-4 md:px-6 md:py-6 transition-all duration-300 pointer-events-none">
+      <div className="relative w-full max-w-full h-[100dvh] z-10 flex flex-col px-2 py-3 sm:px-4 sm:py-4 md:px-6 md:py-6 transition-all duration-300 pointer-events-none">
         {/* Dynamic Header Navbar */}
         {showNav && (
           <header className="flex justify-between items-center t-nav-bg backdrop-blur-md rounded-2xl p-4 border t-border space-x-2 shrink-0 relative z-30 mb-4 shadow-[0_0_15px_rgba(52,211,153,0.02)] pointer-events-auto">
@@ -161,7 +163,7 @@ export default function App() {
         )}
 
         {/* Principal Content Body Area */}
-        <main className="flex-1 overflow-y-auto pr-0.5 pb-32 sm:pb-36 pointer-events-auto">
+        <main className={`flex-1 overflow-y-auto pr-0.5 pointer-events-auto ${showNav ? 'pb-32 sm:pb-36' : 'pb-0'}`}>
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
@@ -180,6 +182,7 @@ export default function App() {
               <Route path="/achievements" element={<BadgeView />} />
               <Route path="/tournaments" element={<TournamentsView />} />
               <Route path="/tournaments/arena" element={<TournamentArenaView />} />
+              <Route path="/voice-simulation" element={<VoiceSimulationView />} />
             </Route>
           </Routes>
         </main>

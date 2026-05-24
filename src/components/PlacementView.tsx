@@ -50,11 +50,16 @@ export default function PlacementView() {
   const startPlacementMatch = async () => {
     try {
       // Find the appropriate placement scenario based on progress
-      // We use a mock scenario template ID for the placement match
-      // In a real backend, this would fetch the specific placement scenario config
-      const scenarioId = "phone-call-1"; 
-      const res = await startGame(scenarioId);
-      navigate(`/game/${res.data.id}`);
+      const difficultyMap: Record<string, any> = {
+        "Easy": "easy",
+        "Medium": "medium",
+        "Hard": "hard",
+        "Adaptive": undefined // Random difficulty
+      };
+      const diff = difficultyMap[matchConfig.label];
+      
+      const res = await startGame(undefined, diff);
+      navigate(`/game/${res.sessionId}`);
     } catch (err) {
       console.error(err);
     }

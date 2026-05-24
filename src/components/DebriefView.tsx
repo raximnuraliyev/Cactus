@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useI18n } from "../i18n";
+import { useAuth } from "../contexts/AuthContext";
 import { useGame } from "../contexts/GameContext";
 import { ScenarioTemplate } from "../types";
 import { 
@@ -20,7 +21,8 @@ export default function DebriefView() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useI18n();
-  const { clearSession } = useGame();
+    const { clearSession } = useGame();
+    const { user, updateUser } = useAuth();
 
   const routeState = location.state as {
     scenario?: ScenarioTemplate;
@@ -80,12 +82,27 @@ export default function DebriefView() {
     window.open(url, "_blank");
   };
 
+  const updateLocalUserStats = () => {
+    if (user?.stats) {
+      updateUser({
+        stats: {
+          ...user.stats,
+          placementGamesPlayed: Math.min(5, (user.stats.placementGamesPlayed || 0) + 1),
+          totalXp: (user.stats.totalXp || 0) + (result?.xpEarned || 0),
+          elo: result?.breakdown?.newElo || user.stats.elo
+        }
+      });
+    }
+  };
+
   const handlePlayAgain = () => {
+    updateLocalUserStats();
     clearSession();
     navigate("/home");
   };
 
   const handleGoHome = () => {
+    updateLocalUserStats();
     clearSession();
     navigate("/home");
   };

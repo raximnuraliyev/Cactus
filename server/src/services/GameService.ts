@@ -2,7 +2,7 @@ import { GameSessionRepository } from '../repositories/GameSessionRepository.js'
 import { SessionTurnRepository } from '../repositories/SessionTurnRepository.js';
 import { ScenarioRepository } from '../repositories/ScenarioRepository.js';
 import { UserStatsRepository } from '../repositories/UserStatsRepository.js';
-import { AIService } from './AIService.js';
+import { AIService } from './ai.service.js';
 import { ScoringService } from './ScoringService.js';
 import { BadgeService } from './BadgeService.js';
 import { AIPromptFactory } from '../factories/AIPromptFactory.js';
@@ -173,6 +173,7 @@ export class GameService {
       clueRevealed: aiResponse.clueRevealed,
       cluesFound: session.clues_found + (aiResponse.clueRevealed ? 1 : 0),
       cluesTotal: session.clues_total,
+      canEnd: turnNumber >= 3,
     };
   }
 

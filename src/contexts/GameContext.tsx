@@ -24,7 +24,7 @@ interface GameContextValue {
   verdictResult: VerdictResponse["data"] | null;
   startGame: (category?: ScenarioType, difficulty?: DifficultyLevel) => Promise<ActiveGameSession>;
   sendTurn: (input: string, inputType: "choice" | "text" | "tool") => Promise<void>;
-  submitVerdict: (verdict: "real_employee" | "fraudster", flaggedClues: string[]) => Promise<VerdictResponse["data"]>;
+  submitVerdict: (verdict: "real_employee" | "fraudster", flaggedClues: string[], overrideSessionId?: string) => Promise<VerdictResponse["data"]>;
   clearSession: () => void;
   addLocalTurn: (turn: Turn) => void;
   flagTurn: (turnIndex: number) => void;
@@ -109,12 +109,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
   );
 
   const doSubmitVerdict = useCallback(
-    async (verdict: "real_employee" | "fraudster", flaggedClues: string[]) => {
-      if (!session) throw new Error("No active session");
+    async (verdict: "real_employee" | "fraudster", flaggedClues: string[], overrideSessionId?: string) => {
+      const activeSessionId = overrideSessionId || session?.sessionId;
+      if (!activeSessionId) throw new Error("No active session");
       setIsLoading(true);
       try {
         const res = await apiSubmitVerdict(
-          session.sessionId,
+          activeSessionId,
           verdict,
           flaggedClues
         );

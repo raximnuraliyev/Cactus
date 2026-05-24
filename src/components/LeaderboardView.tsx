@@ -185,7 +185,7 @@ export default function LeaderboardView() {
                     {/* Score column */}
                     <div className="col-span-3 text-right font-mono text-base font-bold">
                       <span className={isMe ? "t-text-accent" : "t-text"}>
-                        {player.score.toLocaleString()}
+                        {(player.score || 0).toLocaleString()}
                       </span>
                       <span className="text-xs t-text-muted font-mono ml-1.5 font-normal">XP</span>
                     </div>

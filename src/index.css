@@ -3,7 +3,7 @@
 /* ─── Theme Custom Properties ─────────────────── */
 :root {
   /* Requested Variables */
-  --bg-main: #0D1117;       /* Dark cyber-blue/black for main background */
+  --bg-main: #1A1A2E;       /* Dark cyber-blue/black for main background */
   --bg-card: #161B22;       /* Slightly lighter dark for cards/containers */
   --text-main: #FAFAFA;     /* High-contrast white for primary text/headings */
   --text-muted: #8B949E;    /* Light gray for secondary text/labels (improves readability) */
