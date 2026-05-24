@@ -216,23 +216,29 @@ export class TournamentController {
         }
       }
 
-      // If the lobby has Agent_Fraudster, trigger AI response asynchronously
-      if (lobby.players.includes('Agent_Fraudster')) {
+      // If the lobby has ANY bots, trigger AI response asynchronously
+      const botPlayers = lobby.players.filter(p => p.startsWith('Agent_'));
+      if (botPlayers.length > 0) {
         // Run in background so we don't block the HTTP response
         setTimeout(async () => {
           try {
-            const aiResponse = await AIService.generateCommLinkReply(lobby.messages || []);
+            // For simplicity, just make the first bot reply so they don't spam.
+            // In a real scenario, you could stagger their replies.
+            const botName = botPlayers[0];
+            const botRole = lobby.roles?.[botName] || 'Bank Staff';
+            
+            const aiResponse = await AIService.generateCommLinkReply(lobby.messages || [], botName, botRole);
             lobby.messages?.push({
               id: Date.now(),
               type: 'user',
-              sender: 'Agent_Fraudster',
+              sender: botName,
               content: aiResponse,
               time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
             });
           } catch (err) {
             console.error('Failed to generate AI response for lobby', id, err);
           }
-        }, 1000);
+        }, 1500);
       }
 
       res.json({

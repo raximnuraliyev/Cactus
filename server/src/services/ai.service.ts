@@ -115,20 +115,22 @@ Respond ONLY with a JSON object:
   }
 
   /**
-   * Generates a reply for the AI Fraudster bot in the Tournament Comm-Link.
+   * Generates a reply for the AI bot in the Tournament Comm-Link.
    */
-  static async generateCommLinkReply(messages: any[]): Promise<string> {
+  static async generateCommLinkReply(messages: any[], botName: string = 'Agent_Fraudster', botRole: string = 'Fraudster'): Promise<string> {
     const formattedMessages = messages.map(m => ({
-      role: m.sender === 'Agent_Fraudster' ? 'assistant' : 'user',
+      role: m.sender === botName ? 'assistant' : 'user',
       content: m.type === 'system' ? `[SYSTEM] ${m.content}` : `[${m.sender}] ${m.content}`
     }));
 
-    // System prompt to instruct the AI to play the Fraudster
+    const systemPromptText = botRole === 'Fraudster' 
+      ? `You are playing the role of a cunning Fraudster in a multiplayer training game against Bank Staff members. You are chatting over a 'Comm-Link' as '${botName}'. Try to deceive them, pressure them, or negotiate a fake deal. Keep your responses short, under 3 sentences. Stay in character!`
+      : `You are playing the role of a Bank Staff member in a multiplayer training game against a hidden Fraudster. You are chatting over a 'Comm-Link' as '${botName}'. Try to figure out who the fraudster is. Ask investigative questions. Keep your responses short, under 3 sentences. Stay in character!`;
+
+    // System prompt to instruct the AI
     const systemMessage = {
       role: 'system',
-      content: "You are playing the role of a cunning Fraudster in a multiplayer training game against a Bank Staff member. " +
-               "You are chatting over a 'Comm-Link'. Try to deceive them, pressure them, or negotiate a fake deal. " +
-               "Keep your responses short, under 3 sentences. Stay in character!"
+      content: systemPromptText
     };
 
     try {
